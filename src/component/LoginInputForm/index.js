@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { Input } from "antd";
 
-class FloatTitleInput extends Component {
+class LoginInput extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -16,22 +16,19 @@ class FloatTitleInput extends Component {
     if (onChange && typeof onChange === 'function') onChange(value);
   }
 
-  // getInputValue() {
-  //   const
-  // }
-
   render() {
-    const { password } = this.props;
+    const { password, defaultValue } = this.props;
     return (
       <div>
+        <div> Label </div>
         <Input
           onChange={this.handleChange}
           type={password? 'password' : 'text'}
-          value={this.getInputValue()}
+          defaultValue={defaultValue}
         />
       </div>
     )
   }
 }
 
-export default FloatTitleInput;
+export default LoginInput;

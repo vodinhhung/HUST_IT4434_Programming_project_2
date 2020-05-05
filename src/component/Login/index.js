@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import '../style/global.css';
 import { Input } from 'antd';
+
+// import LoginInput from './LoginInputForm/index';
 
 class Login extends Component {
   constructor(props){
@@ -11,7 +12,7 @@ class Login extends Component {
   render(){
     return(
       <div className="login_wrapper">
-        <Input/>
+        hey hey h eyfvmefmgwefwrgege
       </div>
     )
   }
