@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import '../style/global.css';
-import { Input } from 'antd';
+import './../../style/global.css';
 
-// import LoginInput from './LoginInputForm/index';
+import LoginInputForm from './../LoginInputForm/index';
 
 class Login extends Component {
   constructor(props){
@@ -12,7 +11,9 @@ class Login extends Component {
   render(){
     return(
       <div className="login_wrapper">
-        hey hey h eyfvmefmgwefwrgege
+        <LoginInputForm
+          
+        />
       </div>
     )
   }

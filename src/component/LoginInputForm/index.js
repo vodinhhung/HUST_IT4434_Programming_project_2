@@ -1,7 +1,7 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import { Input } from "antd";
 
-class LoginInput extends Component {
+class LoginInputForm extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -31,4 +31,4 @@ class LoginInput extends Component {
   }
 }
 
-export default LoginInput;
+export default LoginInputForm;
