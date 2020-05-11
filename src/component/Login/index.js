@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './../../style/global.css';
+import './index.scss';
 
 import LoginInputForm from './../LoginInputForm/index';
 
@@ -10,15 +11,18 @@ class Login extends Component {
 
   render(){
     return(
-      <div className="login_wrapper">
-        <LoginInputForm
-          defaultValue={"Name"}
-        />
-        <LoginInputForm
-          defaultValue={"Password"}
-          password={true}
-        />
-      </div>
+      <body className="background">
+        <div className="login_wrapper">
+          <LoginInputForm
+            defaultValue={"Name"}
+          />
+          <LoginInputForm
+            defaultValue={"Password"}
+            password={true}
+          />
+        </div>
+      </body>
+      
     )
   }
 }

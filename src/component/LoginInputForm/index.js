@@ -18,9 +18,12 @@ class LoginInputForm extends Component {
 
   render() {
     const { password, defaultValue } = this.props;
+
+    let label = password? "Password":"Username";
+
     return (
       <div>
-        <div> Label </div>
+        <div> {label} </div>
         <Input
           onChange={this.handleChange}
           type={password? 'password' : 'text'}
