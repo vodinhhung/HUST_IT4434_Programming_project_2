@@ -1,14 +1,17 @@
 import React from 'react';
 import '../style/App.css';
-import Login from '../component/Login/index';
+import Login from '../component/Login';
+import Home from '../component/Home'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <Login>
-        tgkmtmk
-      </Login>
-    </div>
+    <Router>
+      <div>
+        <Route exact path='/' component={Home}/>
+        <Route path='/login' component={Login}/>
+      </div>
+    </Router>
   );
 }
 

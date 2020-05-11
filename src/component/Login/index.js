@@ -12,7 +12,11 @@ class Login extends Component {
     return(
       <div className="login_wrapper">
         <LoginInputForm
-          
+          defaultValue={"Name"}
+        />
+        <LoginInputForm
+          defaultValue={"Password"}
+          password={true}
         />
       </div>
     )
