@@ -1,6 +1,7 @@
 import React from 'react';
 import '../style/App.css';
 import Login from '../component/Login/index';
+import '../style/global.css';
 
 function App() {
   return (
