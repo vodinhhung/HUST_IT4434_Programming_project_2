@@ -3,11 +3,24 @@ import ReactDOM from 'react-dom';
 import './style/index.css';
 import App from './main/App';
 import * as serviceWorker from './main/serviceWorker';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import {initStore} from './store';
+import Home from './component/Home';
+import Login from './component/Login'
+
+
+const store = initStore()
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <Router>
+      <div>
+        <Route exact path='/' component={Home}/>
+        <Route path='/login' component={Login}/>
+      </div>
+    </Router>
+  </Provider>,
   document.getElementById('root')
 );
 
