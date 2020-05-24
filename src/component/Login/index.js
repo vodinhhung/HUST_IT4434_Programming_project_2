@@ -15,6 +15,8 @@ class Login extends Component {
     this.state = {
       userName: "",
       password: "",
+      isCreating: false,
+      isLogin: false,
     }
   }
 
@@ -51,9 +53,10 @@ class Login extends Component {
     let defaultValue = type === 'password'? password : userName;
 
     return (
-      <div>
+      <div style={{ display: 'flex' }}>
         <div> {label} </div>
         <Input
+          className="input_login"
           onChange={(value) => this.handleChange(type, value)}
           defaultValue={defaultValue}
         />
@@ -65,21 +68,14 @@ class Login extends Component {
     return(
       <div className="background">
         <div className="login_wrapper">
-          {/* <LoginInputForm
-            defaultValue={"Name"}
-          />
-          <LoginInputForm
-            defaultValue={"Password"}
-            password={true}
-          /> */}
           {this.renderInputForm('username')}
           {this.renderInputForm('password')}
         </div>
         <Button
+          className="style_button"
           size="small"
           placeholder="Log in"
           onClick={() => this.handleClickSignInButton()}
-          className="style-button"
         />
       </div>
       
