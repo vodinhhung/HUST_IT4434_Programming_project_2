@@ -4,6 +4,9 @@ import './../../style/global.css';
 import './index.scss';
 
 import { Button, Input } from 'antd';
+import {
+  checkLoginStatus
+} from './../../action';
 
 class Login extends Component {
   constructor(props){
@@ -16,28 +19,36 @@ class Login extends Component {
   }
 
   handleChange = (type, value) => {
-    if (type == 'username'){
+    console.log(value.currentTarget.value, "value")
+    if (type === 'username'){
       this.setState({ userName: value.currentTarget.value});
     }
-    if (type == 'password'){
+    if (type === 'password'){
       this.setState({ password: value.currentTarget.value});
     }
   }
 
-  handleClickSignInButton = () => {
+  handleClickSignInButton = async () => {
     const { userName, password } = this.state;
+    const { checkLoginStatus } = this.props;
     
     let params = {
       username: userName,
       password: password,
+    }
+
+    let isLoginSucess =  await checkLoginStatus(params);
+    console.log("login success", isLoginSucess)
+    if (isLoginSucess){
+      console.log("Login success")
     }
   }
 
   renderInputForm(type) {
     const { userName, password } = this.state;
 
-    let label = type == 'password'? "Password":"Username";
-    let defaultValue = type == 'password'? password : userName;
+    let label = type === 'password'? "Password":"Username";
+    let defaultValue = type === 'password'? password : userName;
 
     return (
       <div>
@@ -85,6 +96,6 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {
-
+    checkLoginStatus
   }
 )(Login);
