@@ -33,7 +33,9 @@ class Home extends Component {
                         onClick={this.handleShowModal}
                         size="small"
                         placeholder="Log in"
-                    />
+                    >
+                        Open modal
+                    </Button>
                     {/* {visibleModal && ( */}
                         <Modal
                             title="Login Layout"

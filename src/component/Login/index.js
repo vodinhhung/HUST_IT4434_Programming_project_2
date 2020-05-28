@@ -21,7 +21,6 @@ class Login extends Component {
   }
 
   handleChange = (type, value) => {
-    console.log(value.currentTarget.value, "value")
     if (type === 'username'){
       this.setState({ userName: value.currentTarget.value});
     }
@@ -40,9 +39,7 @@ class Login extends Component {
     }
 
     let isLoginSucess =  await checkLoginStatus(params);
-    console.log("login success", isLoginSucess)
     if (isLoginSucess){
-      console.log("Login success")
     }
   }
 
@@ -72,11 +69,11 @@ class Login extends Component {
           {this.renderInputForm('password')}
         </div>
         <Button
-          className="style_button"
           size="small"
-          placeholder="Log in"
           onClick={() => this.handleClickSignInButton()}
-        />
+        >
+          Login
+          </Button>
       </div>
       
     )
