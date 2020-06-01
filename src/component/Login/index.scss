@@ -1,25 +1,60 @@
-@import '../../../static/utilities.scss';
+@import "../../../static/utilities.scss";
 
-.background{
-    position: relative;
-    height: 100%;
+.background {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  // height: 100vh;
+  align-content: center;
+  align-items: center;
 
-    .login_wrapper {
-        position: absolute;
-        width: 200px;
-        top: 200px;
-        left: 200px;
+  .login_image {
+    order: 1;
+    background-image: url("Instagram-main-image.jpg");
+    justify-content: center;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    width: 60vh;
+  }
 
-        .input_login{
-            width: 200px;
+  .login_info {
+    order: 2;
+    display: flex;
+    height: 100vh;
+    width: 60vh;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+
+    .login_content {
+      align-self: center;
+      margin: 10px;
+    }
+
+    .login_input {
+      align-self: center;
+      margin: 5px;
+
+      .input_login {
+        align-self: start;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+
+        .field_input {
+          
         }
+
+        .box_input{
+
+        }
+      }
     }
 
-    .style_button {
-        position: absolute;
-        width: 200px;
-        height: 50px;
-        top: 300px;
-        left: 200px;
+    .login_button {
+      margin: 10px;
+      align-self: center;
     }
+  }
 }
