@@ -1,12 +1,13 @@
 @import "../../../static/utilities.scss";
 
-.background {
+.login_background {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  // height: 100vh;
+  height: 100vh;
   align-content: center;
   align-items: center;
+  background-image: url("vietnam1.jpg");
 
   .login_image {
     order: 1;
@@ -21,40 +22,45 @@
   .login_info {
     order: 2;
     display: flex;
-    height: 100vh;
+    height: 80vh;
     width: 60vh;
     flex-direction: column;
     justify-content: center;
     align-content: center;
+    border-radius: 20px;
+    background-color: white;
 
-    .login_content {
+    .login_title_content {
       align-self: center;
       margin: 10px;
+      font: 60px Goergia, sans-serif;
+      margin: 30px 0px;
     }
 
     .login_input {
       align-self: center;
-      margin: 5px;
+      margin: 10px;
+      width: 200px;
 
       .input_login {
         align-self: start;
         border-radius: 4px;
         display: flex;
         flex-direction: column;
-
-        .field_input {
-          
-        }
+        margin: 10px 0px;
 
         .box_input{
-
+          border-radius: 20px;
         }
       }
     }
 
     .login_button {
-      margin: 10px;
       align-self: center;
+      
+      .button{
+        border-radius: 4px;
+      }
     }
   }
 }

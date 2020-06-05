@@ -51,27 +51,25 @@ class Login extends Component {
 
     return (
       <div className="input_login">
-        <div className="field_input"> 
-          {label} 
-        </div>
         <Input
           className="box_input"
           onChange={(value) => this.handleChange(type, value)}
           defaultValue={defaultValue}
+          placeholder={label}
         />
       </div>
     )
   }
 
   render(){
+    const { isSignup } = this.props;
+    const title = isSignup? "Signup" : "Login"
+
     return(
-      <div className="background">
-        <div className="login_image">
-          
-        </div>
+      <div className="login_background">
         <div className="login_info">
-          <div className="login_content">
-            Sign in
+          <div className="login_title_content">
+            {title}
           </div>
           <div className="login_input">
             {this.renderInputForm('username')}
@@ -79,10 +77,10 @@ class Login extends Component {
           </div>
           <div className="login_button">
             <Button
-              size="small"
               onClick={() => this.handleClickSignInButton()}
+              className="button"
             >
-              Login
+              {title}
             </Button>
           </div>
         </div>

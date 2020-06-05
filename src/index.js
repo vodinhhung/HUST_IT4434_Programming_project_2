@@ -6,7 +6,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import {initStore} from './store';
 import Home from './component/Home';
-import Login from './component/Login'
+import Login from './component/Login';
+import UserDetail from './component/UserDetail';
 
 
 const store = initStore()
@@ -17,6 +18,7 @@ ReactDOM.render(
       <div>
         <Route exact path='/' component={Home}/>
         <Route path='/login' component={Login}/>
+        <Route path='/userdetail' component={UserDetail}/>
       </div>
     </Router>
   </Provider>,
