@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import { Modal, Button } from "antd";
+import { connect } from "react-redux";
+import { Button } from "antd";
 import "./index.scss";
+
+import HomeMenu from '../Menu';
 
 class Home extends Component {
   constructor(props) {
@@ -26,61 +29,22 @@ class Home extends Component {
       <div className="home">
         <div className="sticky_scroll">
           <Button
-            className="sticky_button"
-            onClick={this.handleShowModal}
-            size="small"
-            placeholder="Log in">
-              Login
+            className="sticky_button">
+            Logout
           </Button>
           <Button
             className="sticky_button">
-            Register
-          </Button>
-          <Button
-            className="sticky_button">
-            My account
-          </Button>
-        </div>
-        <div className="home_title">
-          <div className="web_name">
-            Web ban hang back khoa
-          </div>
-          <Button
-            className="user_cart">
-            Gio hang
-          </Button>
-        </div>
-        <div className="categories_home">
-          <Button className="button_category">
-            Do gia dung
-          </Button>
-          <Button className="button_category">
-            Do gia dung
-          </Button>
-          <Button className="button_category">
-            Do gia dung
-          </Button>
-          <Button className="button_category">
-            Do gia dung
-          </Button>
-          <Button className="button_category">
-            Do gia dung
-          </Button>
-          <Button className="button_category">
-            Do gia dung
+            Cart
           </Button>
         </div>
         <div className="home_content">
-          <div className="best_product">
-            <div className="title_best_product">
-              Best product
-            </div>
-            <div className="best_product_content">
-              Content of best product
-            </div>
+          <div className="home_menu">
+            <HomeMenu/>
           </div>
-          <div className="normal_product">
-            Normal product
+          <div className="home_product">
+            <div className="normal_product">
+              Normal product
+            </div>
           </div>
         </div>
       </div>
@@ -88,4 +52,16 @@ class Home extends Component {
   }
 }
 
-export default Home;
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+    product: state.product,
+  }
+}
+
+export default connect(
+  mapStateToProps, 
+  {
+
+  }
+)(Home);

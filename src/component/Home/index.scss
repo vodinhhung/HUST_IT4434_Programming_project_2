@@ -1,80 +1,56 @@
 .home {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   position: relative;
-  padding: 0px 10px;
   background-color: lightcyan;
+  height: 100vh;
+  background-image: url('vietnam.jpg');
 
   .sticky_scroll {
-    flex: 1;
     display: flex;
     flex-direction: row-reverse;
     justify-content: flex-start;
-    flex-basis: 50px;
+    flex-basis: 10px;
     position: -webkit-sticky;
     position: sticky;
-    margin-bottom: 20px;
-    border-style: solid;
-    border-color: red;
-    background-color: lightpink;
+    background-color: white;
+    margin: 10px;
+    border-radius: 10px;
 
     .sticky_button {
       margin: 10px;
       width: 80px;
       height: 30px;
+      border-radius: 20px;
     }
   }
 
-  .home_title{
-    flex: 4 0 100px;
+  .home_content{
     display: flex;
-    flex-direction: row;
-    margin-inline-start: 10px;
-    
-    .web_name {
-      flex: 7;
-      margin: 5px;
-    }
-
-    .user_cart {
-      flex: 1;
-      margin: 5px
-    }
-  }
-
-  .categories_home {
-    flex: 2 0 100px;
-    display: flex;
-    flex-direction: row;
-
-    .button_category {
-      flex: 1;
-      border-radius: 4px;
-    }
-  }
-
-  .home_content {
     flex: 9;
-    display: flex;
     flex-direction: row;
+    margin: 5px 0px;
 
-    .best_product {
-      flex: 3;
-      background-color: red;
+    .home_menu {
+      height: 100%;
+      width: 20%;
+      background-color: white;
+      border-radius: 10px;
+      margin: 0px 10px;
+      padding: 20px;
       display: flex;
-      flex-direction: column;
-
-      .title_best_product {
-        flex: 1 0 100px;
-      }
-
-      .best_product_content {
-        flex: 9;
-      }
     }
 
-    .normal_product {
-      flex: 7;
+    .home_product {
+      flex: 9;
+      display: flex;
+      flex-direction: row;
+      margin: 5px 10px;
+  
+      .normal_product {
+        flex: 7;
+      }
     }
   }
 }

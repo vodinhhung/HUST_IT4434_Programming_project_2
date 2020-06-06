@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import axios from 'axios';
 
 import { Input, Button } from 'antd';
-
+import HomeMenu from "./../Menu";
 import './index.scss';
 
 class UserDetail extends Component {
@@ -135,7 +135,7 @@ class UserDetail extends Component {
     return (
       <div className="userdetail_background">
         <div className="side-image">
-          hey hey 1
+          <HomeMenu/>
         </div>
         <div className="user-info">
           <div className="info-title">

@@ -13,15 +13,17 @@
     height: 95%;
     width: 20%;
     background-color: white;
-    border-radius: 20px;
+    border-radius: 10px;
     margin: 0px 20px;
+    padding: 20px;
+    display: flex;
   }
 
   .user-info {
     flex: 3;
     background-color: white;
     height: 95%;
-    border-radius: 20px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
