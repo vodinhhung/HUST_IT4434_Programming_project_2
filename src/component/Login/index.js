@@ -32,7 +32,8 @@ class Login extends Component {
   handleClickSignInButton = async () => {
     const { userName, password } = this.state;
     const { checkLoginStatus } = this.props;
-    
+    console.log("ehye hey")
+
     let params = {
       username: userName,
       password: password,
