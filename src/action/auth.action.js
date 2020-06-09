@@ -4,8 +4,6 @@ import {
   FETCH_LOGIN_TYPE
 } from "../constant";
 import qs from 'querystring';
-import { notification } from 'antd';
-import Router from 'next/router';
 
 export const checkLoginStatus = params => dispatch => {
   let url = `https://hustshop.azurewebsites.net/rest/connect/login`;
@@ -33,17 +31,19 @@ export const checkLoginStatus = params => dispatch => {
           type: FETCH_LOGIN_TYPE,
           payload: res.data.type,
         })
-        Router.push("/")
-
-        // notification['success']
       }
       
-      return res.data
+      return res.data;
   });
 };
 
 export const createNewCustomer = params => dispatch => {
   let url = `https://hustshop.azurewebsites.net/rest/connect/createaccount`;
+  const options = {
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    }
+  };
 
   return axios
     .post(
@@ -51,7 +51,9 @@ export const createNewCustomer = params => dispatch => {
       qs.stringify({
         username: params.username,
         password: params.password,
-      }))
+      }),
+      options,
+    )
     .then(res => {
       if (res.data.status === "Success" && res.data.username) {
         dispatch({
@@ -59,5 +61,7 @@ export const createNewCustomer = params => dispatch => {
           payload: res.data.username,
         });
       }
+
+      return res.data;
     })
 }

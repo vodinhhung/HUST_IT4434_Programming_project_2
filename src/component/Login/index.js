@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './../../style/global.css';
 import './index.scss';
-import Router from 'next/router';
 
-import { Button, Input } from 'antd';
+import { Button, Input, notification } from 'antd';
 import {
-  checkLoginStatus
+  checkLoginStatus,
+  createNewCustomer,
 } from './../../action';
 
 class Login extends Component {
@@ -32,17 +32,66 @@ class Login extends Component {
 
   handleClickSignInButton = async () => {
     const { userName, password } = this.state;
-    const { checkLoginStatus } = this.props;
+    const { checkLoginStatus, history } = this.props;
+
+    if (this.checkNull(userName) || this.checkNull(password)){
+      return notification.open({
+        message: "Login fail",
+        description: "Username or password can't be empty",
+      })
+    }
 
     let params = {
       username: userName,
       password: password,
     }
 
-    let isLoginSucess =  await checkLoginStatus(params);
-    if (isLoginSucess){
-    }
+    await checkLoginStatus(params)
+      .then(res => {
+        if (res.status === 'Success'){
+          history.push('/home')
+        } else {
+          return notification.open({
+            message: "Login fail",
+            description: "",
+          })
+        }
+      })
   }
+
+  handleSignUp = async () => {
+    const { userName, password } = this.state;
+    const { createNewCustomer } = this.props;
+
+    if (this.checkNull(userName) || this.checkNull(password)){
+      return notification.open({
+        message: "Signup fail",
+        description: "Username or password can't be empty",
+      })
+    }
+
+    let params = {
+      username: userName,
+      password: password,
+    }
+
+    await createNewCustomer(params)
+      .then(res => {
+        if (res.status === 'Success'){
+          return notification.open({
+            message: "Signup success",
+            description: "Enter username and password to login",
+          })
+        } else {
+          return notification.open({
+            message: "Signup fail",
+            description: "",
+          })
+        }
+      })
+  }
+
+  checkNull = value => value === null || value === ''
 
   renderInputForm(type) {
     const { userName, password } = this.state;
@@ -81,7 +130,13 @@ class Login extends Component {
               onClick={() => this.handleClickSignInButton()}
               className="button"
             >
-              {title}
+              Login
+            </Button>
+            <Button
+              onClick={() => this.handleSignUp()}
+              className="button"
+            >
+              Sign up
             </Button>
           </div>
         </div>
@@ -99,6 +154,7 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {
-    checkLoginStatus
+    checkLoginStatus,
+    createNewCustomer,
   }
 )(Login);
