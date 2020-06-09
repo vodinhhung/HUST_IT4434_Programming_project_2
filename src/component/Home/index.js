@@ -26,25 +26,13 @@ class Home extends Component {
     const { visibleModal } = this.state;
 
     return (
-      <div className="home">
-        <div className="sticky_scroll">
-          <Button
-            className="sticky_button">
-            Logout
-          </Button>
-          <Button
-            className="sticky_button">
-            Cart
-          </Button>
+      <div className="home_content">
+        <div className="home_menu">
+          <HomeMenu/>
         </div>
-        <div className="home_content">
-          <div className="home_menu">
-            <HomeMenu/>
-          </div>
-          <div className="home_product">
-            <div className="normal_product">
-              Normal product
-            </div>
+        <div className="home_product">
+          <div className="normal_product">
+            Normal product
           </div>
         </div>
       </div>

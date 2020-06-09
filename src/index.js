@@ -8,6 +8,7 @@ import {initStore} from './store';
 import Home from './component/Home';
 import Login from './component/Login';
 import UserDetail from './component/UserDetail';
+import Cart from './component/Cart';
 
 
 const store = initStore()
@@ -19,6 +20,7 @@ ReactDOM.render(
         <Route exact path='/' component={Home}/>
         <Route path='/login' component={Login}/>
         <Route path='/userdetail' component={UserDetail}/>
+        <Route path='/cart' component={Cart}/>
       </div>
     </Router>
   </Provider>,

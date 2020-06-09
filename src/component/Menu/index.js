@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 // import Link from 'next/link';
 // import Router from 'next/router';
 
-import { Menu } from 'antd';
+import { Menu, Button } from 'antd';
 import './index.scss';
 const Item = Menu.Item;
 
@@ -34,6 +34,9 @@ class HomeMenu extends Component {
           <Item> Cart </Item>
           <Item> Like </Item>
         </Menu>
+        <Button>
+          Logout
+        </Button>
       </div>
     )
   }

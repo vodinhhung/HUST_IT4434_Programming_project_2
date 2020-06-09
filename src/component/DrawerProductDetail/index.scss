@@ -1,0 +1,34 @@
+@import "../../../static/utilities.scss";
+
+.drawer-background {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+
+  .drawer-line {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 10px 0px;
+
+    .line-title {
+      flex: 1;
+      font: 20px sans-serif;
+    }
+
+    .line-input{
+      flex: 2;
+      border-radius: 20px;
+    }
+  }
+
+  .line-button {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 10px 0px;
+
+    .drawer-button{
+      border-radius: 20px;
+    }
+  }
+}
