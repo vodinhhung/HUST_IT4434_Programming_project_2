@@ -46,7 +46,9 @@
       flex: 9;
       display: flex;
       flex-direction: row;
-      margin: 5px 10px;
+      margin: 0px 10px;
+      background-color: white;
+      border-radius: 10px;
   
       .normal_product {
         flex: 7;

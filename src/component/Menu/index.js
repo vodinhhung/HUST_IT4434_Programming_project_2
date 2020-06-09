@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+// import Link from 'next/link';
+// import Router from 'next/router';
 
 import { Menu } from 'antd';
 import './index.scss';
@@ -10,6 +12,10 @@ class HomeMenu extends Component {
     super(props);
   }
 
+  // handleOnClinkMenu = ({ key }) => {
+  //   Router.push(key)
+  // }
+
   render() {
     const name = "Hung"
 
@@ -18,9 +24,13 @@ class HomeMenu extends Component {
         <div className="menu-info">
           Welcome {name}
         </div>
-        <Menu className="menu-content">
-          <Item> Home </Item>
-          <Item> User detail </Item>
+        <Menu 
+          className="menu-content">
+          <Item key="/"> 
+            Home
+          </Item>
+          <Item key="/userdetail">
+          </Item>
           <Item> Cart </Item>
           <Item> Like </Item>
         </Menu>
