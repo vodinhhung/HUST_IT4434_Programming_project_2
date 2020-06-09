@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import Link from 'next/link';
-// import Router from 'next/router';
 
 import { Menu, Button } from 'antd';
 import './index.scss';
@@ -12,27 +10,27 @@ class HomeMenu extends Component {
     super(props);
   }
 
-  // handleOnClinkMenu = ({ key }) => {
-  //   Router.push(key)
-  // }
+  handleOnClinkMenu = ({ key }) => {
+    const { history } = this.props;
+    history.push(key)
+  }
 
   render() {
-    const name = "Hung"
+    const { auth } = this.props;
+    const { name, type } = auth;
 
     return(
       <div className="menu-background">
         <div className="menu-info">
           Welcome {name}
         </div>
-        <Menu 
-          className="menu-content">
-          <Item key="/"> 
-            Home
-          </Item>
-          <Item key="/userdetail">
-          </Item>
-          <Item> Cart </Item>
-          <Item> Like </Item>
+        <Menu
+          onClick={this.handleOnClinkMenu}
+          className="menu-content"
+        >
+          <Item key="/home"> Home </Item>
+          <Item key="/userdetail"> User detail </Item>
+          <Item key="/cart"> Cart </Item>
         </Menu>
         <Button>
           Logout
@@ -44,9 +42,14 @@ class HomeMenu extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user,
+    user: state.user.user,
+    auth: state.auth,
   };
 };
 
 export default connect(
-  mapStateToProps, {})(HomeMenu);
+  mapStateToProps, 
+  {
+
+  }
+)(HomeMenu);

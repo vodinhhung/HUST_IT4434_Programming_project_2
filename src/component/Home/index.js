@@ -24,11 +24,14 @@ class Home extends Component {
 
   render() {
     const { visibleModal } = this.state;
+    const { history } = this.props;
 
     return (
       <div className="home_content">
         <div className="home_menu">
-          <HomeMenu/>
+          <HomeMenu
+            history={history}
+          />
         </div>
         <div className="home_product">
           <div className="normal_product">

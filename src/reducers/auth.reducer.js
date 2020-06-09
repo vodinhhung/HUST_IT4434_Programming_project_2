@@ -1,5 +1,8 @@
 import update from "immutability-helper";
-import { FETCH_LOGIN_TYPE, FETCH_LOGIN_USERNAME } from "../constant";
+import { 
+  FETCH_LOGIN_TYPE, 
+  FETCH_LOGIN_USERNAME 
+} from "../constant";
 
 const initialState = {
   name: "",
@@ -12,7 +15,7 @@ export default (state = initialState, action) => {
       return update(state, { name: { $set: action.payload } })
     
     case FETCH_LOGIN_TYPE:
-      return update(state, { type: {$set: action.payload } })
+      return update(state, { type: { $set: action.payload } })
   }
 
   return state;

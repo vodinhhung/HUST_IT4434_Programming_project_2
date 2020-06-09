@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import axios from 'axios';
+import {
+  updateUserInfo
+} from "./../../action";
 
 import { Input, Button } from 'antd';
 import HomeMenu from "./../Menu";
@@ -27,15 +29,8 @@ class UserDetail extends Component {
   }
 
   handleUpdateUser = e => {
-    const { user } = this.state;
-    let url = `https://hustshop.azurewebsites.net/rest/connect/updateuserinfo`
-    let params = user;
-
-    axios
-      .post(url, params)
-      .then(res => {
-        
-      })
+    const { updateUserInfo } = this.props;
+    // what to do next
   }
 
   handleOnChangeInput = (value, type) => {
@@ -132,10 +127,14 @@ class UserDetail extends Component {
   }
 
   render() {
+    const { history } = this.props;
+
     return (
       <div className="userdetail_background">
         <div className="side-image">
-          <HomeMenu/>
+          <HomeMenu
+            history={history}
+          />
         </div>
         <div className="user-info">
           <div className="info-title">
@@ -160,7 +159,11 @@ class UserDetail extends Component {
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    user: state.user.user,
+  };
 };
 
-export default connect(mapStateToProps, {})(UserDetail);
+export default connect(mapStateToProps, {
+  updateUserInfo
+})(UserDetail);

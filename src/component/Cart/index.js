@@ -157,12 +157,15 @@ class Cart extends Component {
   }
 
   render() {
+    const { history } = this.props;
     const { product } = this.state;
 
     return(
       <div className="home-cart">
         <div className="cart-menu">
-          <HomeMenu/>
+          <HomeMenu
+            history={history}
+          />
         </div>
         <div className="cart-content">
           <div className="cart-title">
