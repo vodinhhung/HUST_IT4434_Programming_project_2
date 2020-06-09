@@ -1,6 +1,11 @@
 import axios from "axios";
-import { FETCH_LOGIN_INFO } from "../constant";
+import { 
+  FETCH_LOGIN_USERNAME,
+  FETCH_LOGIN_TYPE
+} from "../constant";
 import qs from 'querystring';
+import { notification } from 'antd';
+import Router from 'next/router';
 
 export const checkLoginStatus = params => dispatch => {
   let url = `https://hustshop.azurewebsites.net/rest/connect/login`;
@@ -10,21 +15,49 @@ export const checkLoginStatus = params => dispatch => {
     }
   };
 
-  return axios.post(
-    url,
-    qs.stringify({
-      username: params.username,
-      password: params.password,
-    }),
-    options
-    )
+  return axios
+    .post(
+      url,
+      qs.stringify({
+        username: params.username,
+        password: params.password,
+      }),
+      options)
     .then(res => {
-      console.log(res, "res when send posi api");
-      if (res.status === "Success" && res.username) {
+      if (res.data.status === "Success" && res.data.username) {
         dispatch({
-          type: FETCH_LOGIN_INFO,
-          payload: res.username
+          type: FETCH_LOGIN_USERNAME,
+          payload: res.data.username,
         });
+        dispatch({
+          type: FETCH_LOGIN_TYPE,
+          payload: res.data.type,
+        })
+        Router.push("/")
+
+        // notification['success']
       }
+      
+      return res.data
   });
 };
+
+export const createNewCustomer = params => dispatch => {
+  let url = `https://hustshop.azurewebsites.net/rest/connect/createaccount`;
+
+  return axios
+    .post(
+      url,
+      qs.stringify({
+        username: params.username,
+        password: params.password,
+      }))
+    .then(res => {
+      if (res.data.status === "Success" && res.data.username) {
+        dispatch({
+          type: FETCH_LOGIN_USERNAME,
+          payload: res.data.username,
+        });
+      }
+    })
+}

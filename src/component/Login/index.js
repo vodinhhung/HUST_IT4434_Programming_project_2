@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './../../style/global.css';
 import './index.scss';
+import Router from 'next/router';
 
 import { Button, Input } from 'antd';
 import {
@@ -32,7 +33,6 @@ class Login extends Component {
   handleClickSignInButton = async () => {
     const { userName, password } = this.state;
     const { checkLoginStatus } = this.props;
-    console.log("ehye hey")
 
     let params = {
       username: userName,
