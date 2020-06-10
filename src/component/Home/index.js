@@ -2,28 +2,76 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button } from "antd";
 import "./index.scss";
+import {
+  fetchAllProduct
+} from '../../action';
 
 import HomeMenu from '../Menu';
+import DrawerProductDetail from '../DrawerProductDetail';
 
 class Home extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      visibleModal: false
+      visibleDrawer: false,
+      productId: 0,
     };
   }
 
-  handleShowModal = () => {
-    this.setState({ visibleModal: true });
-  };
+  componentDidMount = async () => {
+    const { fetchAllProduct }= this.props;
+    await fetchAllProduct()
+  }
 
-  handleCloseModal = () => {
-    this.setState({ visibleModal: false });
+  handleOnClickImage = id => {
+    this.setState({
+      visibleDrawer: true,
+      productId: id,
+    })
+  }
+
+  handleCloseDrawer = () => {
+    this.setState({
+      visibleDrawer: false,
+    })
+  }
+
+  renderDrawerProductDetail() {
+    const { visibleDrawer, productId } = this.state;
+
+    return visibleDrawer && (
+      <DrawerProductDetail
+        visibleDrawer={visibleDrawer}
+        callback={e => {this.handleCloseDrawer()}}
+        productId={productId}
+      />
+    )
+  }
+
+  renderProductBoxes() {
+    const { products } = this.props;
+
+    return products.map(product => {
+      const { id, name, category, description, imageURL, price } = product;
+
+      return (
+        <div className="product_box">
+          <img 
+            src={imageURL} 
+            className="product_image"
+            onClick={e => this.handleOnClickImage(id)}/>
+          <div className="product_info">
+            <div>{category}</div>
+            <div>{name}</div>
+            <div>{price}</div>
+          </div>
+        </div>
+      )
+    })
   };
 
   render() {
-    const { visibleModal } = this.state;
     const { history } = this.props;
 
     return (
@@ -33,11 +81,11 @@ class Home extends Component {
             history={history}
           />
         </div>
+        <div className="home_image"></div>
         <div className="home_product">
-          <div className="normal_product">
-            Normal product
-          </div>
+          {this.renderProductBoxes()}
         </div>
+        {this.renderDrawerProductDetail()}
       </div>
     );
   }
@@ -46,13 +94,13 @@ class Home extends Component {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    product: state.product,
+    products: state.product.products,
   }
 }
 
 export default connect(
   mapStateToProps, 
   {
-
+    fetchAllProduct
   }
 )(Home);

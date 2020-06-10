@@ -3,18 +3,27 @@ import React, { Component } from "react";
 import { Drawer, Input, Button } from "antd";
 import { connect } from "react-redux";
 import './index.scss';
+import { cloneDeep } from 'lodash';
 
 class DrawerProductDetail extends Component {
   constructor(props){
     super(props)
 
     this.state = {
-      product: {
-        id: 1,
-        name: "aoe",
-        category: "war",
-        price: 1000000,
-        description: "hey hey"
+      product: {},
+    }
+  }
+
+  componentDidMount = () => {
+    const { products, productId } = this.props;
+    console.log(productId)
+
+    for (let i=0; i<products.length; i++){
+      if(products[i].id === productId){
+        console.log(products[i])
+        this.setState({
+          product: cloneDeep(products[i]),
+        })
       }
     }
   }
@@ -30,44 +39,33 @@ class DrawerProductDetail extends Component {
 
   renderDrawerContent() {
     const { product } = this.state;
-    const { id, name, category, price, description} = product;
+    const { id, name, category, price, description, imageURL} = product;
 
     return(
       <div className="drawer-background">
+        <img
+          src={imageURL}
+          className="image-background"
+        />
         <div className="drawer-line">
           <div className="line-title"> ID </div>
-          <Input
-            className="line-input"
-            defaultValue={id}
-          />
+          <div className="line-input"> {id} </div>
         </div>
         <div className="drawer-line">
           <div className="line-title"> Name </div>
-          <Input
-            className="line-input"
-            defaultValue={name}
-          />
+          <div className="line-input"> {name} </div>
         </div>
         <div className="drawer-line">
           <div className="line-title"> Category </div>
-          <Input
-            className="line-input"
-            defaultValue={category}
-          />
+          <div className="line-input"> {category} </div>
         </div>
         <div className="drawer-line">
           <div className="line-title"> Price </div>
-          <Input
-            className="line-input"
-            defaultValue={price}
-          />
+          <div className="line-input"> {price} </div>
         </div>
         <div className="drawer-line">
           <div className="line-title"> Description </div>
-          <Input
-            className="line-input"
-            defaultValue={description}
-          />
+          <div className="line-input"> {description} </div>
         </div>
         <div className="line-button">
           <Button
@@ -97,7 +95,7 @@ class DrawerProductDetail extends Component {
 
 const mapStateToProps = state => {
   return {
-    
+    products: state.product.products,
   }
 }
 

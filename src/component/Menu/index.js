@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import axios from 'axios';
 
-import { Menu, Button } from 'antd';
+import { Menu, Button, Dropdown } from 'antd';
+import { UserOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import './index.scss';
+
 const Item = Menu.Item;
 
 class HomeMenu extends Component {
@@ -12,29 +15,66 @@ class HomeMenu extends Component {
 
   handleOnClinkMenu = ({ key }) => {
     const { history } = this.props;
-    history.push(key)
+
+    if (key != "logout") {
+      history.push(key)
+    } else {
+      let url = `https://hustshop.azurewebsites.net/rest/connect/logout`;
+
+      axios.get(url).then(res => {
+        if(res.data === "Logged out") {
+          history.push("/")
+        }
+      })
+    }
   }
+
+  handleLogOut = e => {
+    let url = `https://hustshop.azurewebsites.net/rest/connect/logout`
+    const { history } = this.props;
+
+    axios.get(url).then(res => {
+      if(res.data === "Logged out") {
+        history.push("/")
+      }
+    })
+  };
 
   render() {
     const { auth } = this.props;
+    console.log(auth)
     const { name, type } = auth;
+
+    const menu = (
+      <Menu
+        onClick={this.handleOnClinkMenu}
+        className="menu-content"
+      >
+        <Item key="/home"> Home </Item>
+        <Item key="/userdetail"> Detail </Item>
+        <Item key="/cart"> Cart </Item>
+        <Item key="logout"> Logout</Item>
+      </Menu>
+    );
 
     return(
       <div className="menu-background">
-        <div className="menu-info">
-          Welcome {name}
-        </div>
-        <Menu
-          onClick={this.handleOnClinkMenu}
-          className="menu-content"
+        <div className="menu-content"> Game Store</div>
+        <a
+          className="cart"
+          onClick={() => this.handleOnClinkMenu('/cart')}>
+          <ShoppingCartOutlined style={{ fontSize: 20}}/>
+        </a>
+        <Dropdown
+          overlay={menu}
+          className="menu-dropdown"
         >
-          <Item key="/home"> Home </Item>
-          <Item key="/userdetail"> User detail </Item>
-          <Item key="/cart"> Cart </Item>
-        </Menu>
-        <Button>
-          Logout
-        </Button>
+          <a 
+            className="ant-dropdown-link" 
+            onClick={e => e.preventDefault()}>
+            <UserOutlined style={{ fontSize: 20}}/>
+          </a>
+        </Dropdown>
       </div>
     )
   }

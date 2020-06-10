@@ -13,7 +13,7 @@
 
     .line-title {
       flex: 1;
-      font: 20px sans-serif;
+      font: 15px sans-serif;
     }
 
     .line-input{
@@ -30,5 +30,9 @@
     .drawer-button{
       border-radius: 20px;
     }
+  }
+
+  .image-background {
+    margin: 5px 0px 20px 0px;
   }
 }
