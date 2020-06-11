@@ -20,6 +20,7 @@ export const fetchUserInfo = () => dispatch => {
       options
     )
     .then(res => {
+      console.log(res)
       if (res.data.type === 0) {
         dispatch({
           type: FETCH_LOGIN_USERNAME,
@@ -31,7 +32,7 @@ export const fetchUserInfo = () => dispatch => {
         })
       }
 
-      if (res.data.status === "Success" && res.data.username) {
+      if (res.status === 200) {
         dispatch({
           type: FETCH_USER_INFO,
           payload: res.data
@@ -56,7 +57,7 @@ export const updateUserInfo = params => dispatch => {
       qs.stringify({
         name: params.name || "",
         gender: params.gender || "",
-        date: params.date || "",
+        date: params.birthday || "",
         address: params.address || "",
         district: params.district || "",
         province: params.province || "",

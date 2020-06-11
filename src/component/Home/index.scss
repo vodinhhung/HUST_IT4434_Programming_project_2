@@ -11,11 +11,43 @@
     display: flex;
     flex-basis: 0px;
     background-color: #3399ff;
+    position: sticky;
+    top: 0;
   }
 
   .home_image {
     background-image: url("fifa1.jpg");
     height: 600px;
+  }
+
+  .home_search {
+    display: flex;
+    flex-direction: row;
+    position: sticky;
+    top: 6em;
+    margin: 10px 0px; 
+
+    .menu_category {
+      flex: 1;
+      flex-basis: 50vh;
+      display: flex;
+      justify-content: flex-start;
+      margin: 0px 10px;
+    }
+
+    .search_input {
+      flex: 1;
+      flex-basis: 50vh;
+      display: flex;
+      justify-content: flex-end;
+      flex-direction: row;
+
+      .search {
+        width: 300px;
+        margin: 0px 10px;
+        border-radius: 4px;
+      }
+    }
   }
 
   .home_product {
@@ -43,6 +75,11 @@
       .product_info {
         display: flex;
         flex-direction: column;
+
+        .name {
+          font: 15px sans-sefif;
+          margin: 5px 0px;
+        }
       }
     }
   }

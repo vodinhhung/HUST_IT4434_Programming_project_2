@@ -14,7 +14,7 @@ class UserDetail extends Component {
     super(props);
 
     this.state = {
-      user: {},
+      user: props.user,
       isChangeUser: false,
     }
   }
@@ -22,10 +22,10 @@ class UserDetail extends Component {
   componentDidMount = async () => {
     const { fetchUserInfo } = this.props;
     await fetchUserInfo().then(res => {
-      if (res.type === 0) {
-        this.setState({
-          user: {},
-        })
+      this.setState({
+        user: res,
+      })
+      if (res.name === "") {
         return notification.open({
           message: "Please enter your information",
           description: "",
@@ -50,12 +50,11 @@ class UserDetail extends Component {
 
   getValueUserDetail = (type) => {
     const { user } = this.state;
-    return user && user[type] ? user[type] : "Null";
+    console.log(user)
+    return user && user.name? user[type] : "";
   }
 
   renderInfoDetail() {
-    const { user } = this.state;
-
     return(
       <div className="info-detail">
         <div className="info-line">
@@ -63,7 +62,7 @@ class UserDetail extends Component {
           <Input
             className="info-input"
             onChange={e => this.handleOnChangeInput(e.currentTarget.value, "name")}
-            defaultValue={this.getValueUserDetail("name")}
+            value={this.getValueUserDetail("name")}
           />
         </div>
         <div className="info-line">
@@ -71,15 +70,15 @@ class UserDetail extends Component {
           <Input
             className="info-input"
             onChange={e => this.handleOnChangeInput(e.currentTarget.value, "gender")}
-            defaultValue={this.getValueUserDetail("gender")}
+            value={this.getValueUserDetail("gender")}
           />
         </div>
         <div className="info-line">
           <div className="info-line-title"> Birthday </div>
           <Input
             className="info-input"
-            onChange={e => this.handleOnChangeInput(e.currentTarget.value, "date")}
-            defaultValue={this.getValueUserDetail("date")}
+            onChange={e => this.handleOnChangeInput(e.currentTarget.value, "birthday")}
+            value={this.getValueUserDetail("birthday")}
           />
         </div>
         <div className="info-line">
@@ -87,7 +86,7 @@ class UserDetail extends Component {
           <Input
             className="info-input"
             onChange={e => this.handleOnChangeInput(e.currentTarget.value, "address")}
-            defaultValue={this.getValueUserDetail("address")}
+            value={this.getValueUserDetail("address")}
           />
         </div>
         <div className="info-line">
@@ -95,7 +94,7 @@ class UserDetail extends Component {
           <Input
             className="info-input"
             onChange={e => this.handleOnChangeInput(e.currentTarget.value, "district")}
-            defaultValue={this.getValueUserDetail("district")}
+            value={this.getValueUserDetail("district")}
           />
         </div>
         <div className="info-line">
@@ -103,7 +102,7 @@ class UserDetail extends Component {
           <Input
             className="info-input"
             onChange={e => this.handleOnChangeInput(e.currentTarget.value, "province")}
-            defaultValue={this.getValueUserDetail("province")}
+            value={this.getValueUserDetail("province")}
           />
         </div>
         <div className="info-line">
@@ -111,7 +110,7 @@ class UserDetail extends Component {
           <Input
             className="info-input"
             onChange={e => this.handleOnChangeInput(e.currentTarget.value, "city")}
-            defaultValue={this.getValueUserDetail("city")}
+            value={this.getValueUserDetail("city")}
           />
         </div>
         <div className="info-line">
@@ -119,7 +118,7 @@ class UserDetail extends Component {
           <Input
             className="info-input"
             onChange={e => this.handleOnChangeInput(e.currentTarget.value, "country")}
-            defaultValue={this.getValueUserDetail("country")}
+            value={this.getValueUserDetail("country")}
           />
         </div>
         <div className="info-line">
@@ -127,7 +126,7 @@ class UserDetail extends Component {
           <Input
             className="info-input"
             onChange={e => this.handleOnChangeInput(e.currentTarget.value, "telephone")}
-            defaultValue={this.getValueUserDetail("telephone")}
+            value={this.getValueUserDetail("telephone")}
           />
         </div>
       </div>
@@ -136,8 +135,6 @@ class UserDetail extends Component {
 
   render() {
     const { history } = this.props;
-    const { user } = this.state;
-    console.log(user)
 
     return (
       <div className="userdetail_background">

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Button } from "antd";
+import { Menu, Input } from "antd";
 import "./index.scss";
 import {
   fetchAllProduct,
@@ -9,6 +9,8 @@ import {
 
 import HomeMenu from '../Menu';
 import DrawerProductDetail from '../DrawerProductDetail';
+
+const { Search } = Input;
 
 class Home extends Component {
   constructor(props) {
@@ -22,7 +24,12 @@ class Home extends Component {
 
   componentDidMount = async () => {
     const { fetchAllProduct, fetchCartInfo }= this.props;
-    await fetchAllProduct()
+    const params = {
+      name: "",
+      category: "",
+    }
+
+    await fetchAllProduct(params)
     await fetchCartInfo()
   }
 
@@ -37,6 +44,25 @@ class Home extends Component {
     this.setState({
       visibleDrawer: false,
     })
+  }
+
+  handleSearch = async (value) => {
+    const { fetchAllProduct } = this.props;
+    const params = {
+      name: value,
+      category: "",
+    }
+
+    await fetchAllProduct(params)
+  }
+
+  handleSearchByCategory = async (key) => {
+    const { fetchAllProduct } = this.props;
+    const params = {
+      name: "",
+      category: key != "all" ? key : "",
+    }
+    await fetchAllProduct(params)
   }
 
   renderDrawerProductDetail() {
@@ -66,7 +92,7 @@ class Home extends Component {
             onClick={e => this.handleOnClickImage(id)}/>
           <div className="product_info">
             <div>{category}</div>
-            <div>{name}</div>
+            <div className="name">{name}</div>
             <div>{price}</div>
           </div>
         </div>
@@ -85,6 +111,29 @@ class Home extends Component {
           />
         </div>
         <div className="home_image"></div>
+        <div className="home_search">
+          <div className="menu_category">
+            <Menu 
+              mode="horizontal"
+              defaultSelectedKeys={['1']}
+              style={{ width: 300}}
+              onClick={({key}) => this.handleSearchByCategory(key)}>
+              <Menu.Item key="all"> All </Menu.Item>
+              <Menu.Item key="RPG"> RPG </Menu.Item>
+              <Menu.Item key="FPS"> FPS </Menu.Item>
+              <Menu.Item key="Action"> Action </Menu.Item>
+              <Menu.Item key="Sports"> Sports </Menu.Item>
+              <Menu.Item key="Indie"> Indie </Menu.Item>
+            </Menu>
+          </div>
+          <div className="search_input">
+            <Search
+              placeholder="Search"
+              onSearch={value => this.handleSearch(value)}
+              className="search"
+            />
+          </div>
+        </div>
         <div className="home_product">
           {this.renderProductBoxes()}
         </div>
