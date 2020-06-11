@@ -1,39 +1,39 @@
 @import "../../../static/utilities.scss";
 
 .home-cart{
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  background-image: url("vietnam.jpg");
+  
+  .cart-menu {
+    background-color: white;
+    padding: 10px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    background-image: url('vietnam.jpg');
-    height: 100vh;
-  
-    .cart-menu {
-      width: 20%;
-      background-color: white;
-      border-radius: 10px;
-      margin: 10px 10px;
-      padding: 20px;
-      display: flex;
-    }
-  
-    .cart-content {
-      flex: 9;
-      display: flex;
-      flex-direction: column;
-      margin: 10px 10px;
-      padding: 10px;
-      background-color: white;
-      border-radius: 10px;
+    flex-basis: 0px;
+    background-color: #3399ff;
+    margin-bottom: 50px;
+  }
 
-      .cart-title{
-        font: 40px sans-serif;
-        margin: 10px 0px;
-        flex-basis: 50px;
-      }
-  
-      .cart-product {
-        flex: 7;
-        
-      }
+  .cart-content {
+    align-self: center;
+    background-color: white;
+    width: 1000px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 30px 20px;
+
+    .cart-title{
+      margin: 40px;
+      font: 40px medium sans-serif;
+      padding-left: 40px;
+    }
+
+    .cart-product {
+      flex: 7;
+      
     }
   }
+}

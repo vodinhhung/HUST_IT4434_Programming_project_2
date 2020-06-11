@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { Button } from "antd";
 import "./index.scss";
 import {
-  fetchAllProduct
+  fetchAllProduct,
+  fetchCartInfo
 } from '../../action';
 
 import HomeMenu from '../Menu';
@@ -20,8 +21,9 @@ class Home extends Component {
   }
 
   componentDidMount = async () => {
-    const { fetchAllProduct }= this.props;
+    const { fetchAllProduct, fetchCartInfo }= this.props;
     await fetchAllProduct()
+    await fetchCartInfo()
   }
 
   handleOnClickImage = id => {
@@ -45,6 +47,7 @@ class Home extends Component {
         visibleDrawer={visibleDrawer}
         callback={e => {this.handleCloseDrawer()}}
         productId={productId}
+        isHome={true}
       />
     )
   }
@@ -101,6 +104,7 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps, 
   {
-    fetchAllProduct
+    fetchAllProduct,
+    fetchCartInfo
   }
 )(Home);

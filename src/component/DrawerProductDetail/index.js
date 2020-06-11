@@ -16,7 +16,6 @@ class DrawerProductDetail extends Component {
 
   componentDidMount = () => {
     const { products, productId } = this.props;
-    console.log(productId)
 
     for (let i=0; i<products.length; i++){
       if(products[i].id === productId){
@@ -38,6 +37,7 @@ class DrawerProductDetail extends Component {
   }
 
   renderDrawerContent() {
+    const { isHome } = this.props;
     const { product } = this.state;
     const { id, name, category, price, description, imageURL} = product;
 
@@ -73,6 +73,13 @@ class DrawerProductDetail extends Component {
             onClick={e => this.handleClick('cancel')}>
             Cancel
           </Button>
+          {isHome && 
+            <Button
+              className="drawer-button"
+              onClick={e => this.handleClick('cancel')}>
+              Add to cart
+            </Button>
+          }
         </div>
       </div>
     )

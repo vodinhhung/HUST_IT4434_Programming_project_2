@@ -28,7 +28,12 @@
     margin: 10px 0px;
 
     .drawer-button{
-      border-radius: 20px;
+      border-radius: 10px;
+      margin: 0px 5px;
+    }
+
+    .drawer-button:hover {
+      background-color: lightblue;
     }
   }
 

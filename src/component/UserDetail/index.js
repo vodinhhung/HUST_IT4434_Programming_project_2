@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
+  fetchUserInfo,
   updateUserInfo
 } from "./../../action";
 
-import { Input, Button } from 'antd';
+import { Input, Button, notification } from 'antd';
 import HomeMenu from "./../Menu";
 import './index.scss';
 
@@ -13,24 +14,31 @@ class UserDetail extends Component {
     super(props);
 
     this.state = {
-      user: {
-        name: "Hung",
-        gender: "Male",
-        date: "12/07/1998",
-        address: "62 Dinh Cong",
-        district: "Thanh Xuan",
-        province: "Ha Noi",
-        city: "Ha Noi",
-        country: "Viet Nam",
-        telephone: "0912345678",
-      },
+      user: {},
       isChangeUser: false,
     }
   }
 
+  componentDidMount = async () => {
+    const { fetchUserInfo } = this.props;
+    await fetchUserInfo().then(res => {
+      if (res.type === 0) {
+        this.setState({
+          user: {},
+        })
+        return notification.open({
+          message: "Please enter your information",
+          description: "",
+        })
+      }
+    })
+  }
+
   handleUpdateUser = e => {
     const { updateUserInfo } = this.props;
-    // what to do next
+    const { user } = this.state;
+    
+    updateUserInfo(user)
   }
 
   handleOnChangeInput = (value, type) => {
@@ -118,7 +126,7 @@ class UserDetail extends Component {
           <div className="info-line-title"> Phone Number </div>
           <Input
             className="info-input"
-            onChange={e => this.handleOnChangeInput(e.currentTarget.value, "Telephone")}
+            onChange={e => this.handleOnChangeInput(e.currentTarget.value, "telephone")}
             defaultValue={this.getValueUserDetail("telephone")}
           />
         </div>
@@ -128,6 +136,8 @@ class UserDetail extends Component {
 
   render() {
     const { history } = this.props;
+    const { user } = this.state;
+    console.log(user)
 
     return (
       <div className="userdetail_background">
@@ -150,9 +160,6 @@ class UserDetail extends Component {
             </Button>
           </div>
         </div>
-        {/* <div className="side-image">
-          hey hey hey 3
-        </div> */}
       </div>
     );
   }
@@ -165,5 +172,6 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {
-  updateUserInfo
+  updateUserInfo,
+  fetchUserInfo
 })(UserDetail);

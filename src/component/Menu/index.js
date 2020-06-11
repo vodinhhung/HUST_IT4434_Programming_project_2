@@ -59,7 +59,7 @@ class HomeMenu extends Component {
 
     return(
       <div className="menu-background">
-        <div className="menu-content"> Game Store</div>
+        <div className="menu-content"> HUSTSHOP </div>
         <a
           className="cart"
           onClick={() => this.handleOnClinkMenu('/cart')}>

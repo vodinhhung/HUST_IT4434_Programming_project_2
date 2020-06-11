@@ -2,32 +2,28 @@
 
 .userdetail_background {
   display: flex;
-  flex-flow: row wrap;
-  justify-content: space-evenly;
-  height: 100vh;
-  align-content: center;
-  align-items: center;
+  flex-flow: column;
+  justify-content: flex-start;
   background-image: url("vietnam.jpg");
 
   .side-image {
-    height: 95%;
-    width: 20%;
     background-color: white;
-    border-radius: 10px;
-    margin: 0px 20px;
-    padding: 20px;
+    padding: 10px;
     display: flex;
+    flex-basis: 0px;
+    background-color: #3399ff;
+    margin-bottom: 50px;
   }
 
   .user-info {
-    flex: 3;
+    align-self: center;
     background-color: white;
-    height: 95%;
+    width: 800px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin: 0px 20px;
+    margin: 30px 20px;
 
     .info-title {
       margin: 40px;
@@ -38,8 +34,6 @@
     .info-detail {
       display: flex;
       flex-direction: column;
-      overflow: scroll;
-      overflow-x: hidden;
       margin: 5px;
       padding-right: 60px;
       

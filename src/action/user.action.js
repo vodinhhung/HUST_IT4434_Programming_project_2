@@ -1,5 +1,10 @@
 import axios from "axios";
-import { FETCH_USER_INFO } from "../constant";
+import { 
+  FETCH_USER_INFO,
+  FETCH_LOGIN_USERNAME,
+  FETCH_LOGIN_TYPE,
+} from "../constant";
+import qs from 'querystring';
 
 export const fetchUserInfo = () => dispatch => {
   let url = `https://hustshop.azurewebsites.net/rest/connect/getuserinfo`;
@@ -15,10 +20,21 @@ export const fetchUserInfo = () => dispatch => {
       options
     )
     .then(res => {
+      if (res.data.type === 0) {
+        dispatch({
+          type: FETCH_LOGIN_USERNAME,
+          payload: res.data.username,
+        })
+        dispatch({
+          type: FETCH_LOGIN_TYPE,
+          payload: res.data.type,
+        })
+      }
+
       if (res.data.status === "Success" && res.data.username) {
         dispatch({
           type: FETCH_USER_INFO,
-          payload: res.data.username
+          payload: res.data
         });
       }
 
@@ -27,7 +43,7 @@ export const fetchUserInfo = () => dispatch => {
 };
 
 export const updateUserInfo = params => dispatch => {
-  let url = `https://hustshop.azurewebsites.net/rest/connect/getuserinfo`;
+  let url = `https://hustshop.azurewebsites.net/rest/connect/updateuserinfo`;
   const options = {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded"
@@ -37,6 +53,17 @@ export const updateUserInfo = params => dispatch => {
   return axios
     .post(
       url,
+      qs.stringify({
+        name: params.name || "",
+        gender: params.gender || "",
+        date: params.date || "",
+        address: params.address || "",
+        district: params.district || "",
+        province: params.province || "",
+        city: params.city || "",
+        country: params.country || "",
+        telephone: params.telephone || "",
+      }),
       options
     )
     .then(res => {
