@@ -47,10 +47,6 @@ class Cart extends Component {
     })
   }
 
-  handleDeleteRow = key => {
-    console.log(key)
-  }
-
   handleCloseDrawer = () => {
     this.setState({
       visibleDrawer: false,
@@ -66,14 +62,13 @@ class Cart extends Component {
     } 
 
     await addProductToCart(params).then(res => {
-      console.log(res)
+      
     })
   }
 
   handleDeleteItemFromCart = (id, quantity) => {
     const { addProductToCart, fetchCartInfo } = this.props;
 
-    console.log("hey hey")
     let params = {
       productID: id,
       quantity: -quantity,
@@ -110,13 +105,11 @@ class Cart extends Component {
   }
 
   handleClickOrder = e => {
-    console.log(e)
     let url = `https://hustshop.azurewebsites.net/rest/connect/pay`;
 
     return axios
       .get(url)
       .then(res => {
-        console.log(res)
         if (res.data.status === "Success"){
           notification.open({
             message: "Order successfully",

@@ -11,7 +11,7 @@ export const fetchAllProduct = value => dispatch => {
   if (value && value.name && value.name != ""){
     params.name = value.name;
   }
-  if (value && value.name && value.category != ""){
+  if (value && value.category && value.category != ""){
     params.category = value.category;
   }
 

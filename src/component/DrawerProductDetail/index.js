@@ -6,7 +6,11 @@ import './index.scss';
 import { cloneDeep } from 'lodash';
 import {
   addProductToCart
-} from '../../action'
+} from '../../action';
+import axios from 'axios';
+import qs from 'querystring';
+
+import ModalProduct from '../ModalProduct';
 
 class DrawerProductDetail extends Component {
   constructor(props){
@@ -15,6 +19,7 @@ class DrawerProductDetail extends Component {
     this.state = {
       product: {},
       quantity: 0,
+      visibleModal: false,
     }
   }
 
@@ -37,6 +42,7 @@ class DrawerProductDetail extends Component {
     if(type == 'cancel'){
       callback(false)
     }
+
     if (type == 'add_item'){
       const params = {
         productID: id,
@@ -55,6 +61,36 @@ class DrawerProductDetail extends Component {
         }
       })
     }
+
+    if (type == 'delete') {
+      let url = `https://hustshop.azurewebsites.net/rest/connect/deleteproduct`;
+
+      axios
+        .post(
+          url,
+          qs.stringify({
+            id: id,
+          })
+        ).then(res => {
+          if (res.data.status == "Success"){
+            notification.open({
+              message: "Delete product success"
+            })
+            callback(false)
+          } else {
+            notification.open({
+              message: "Delete product fail",
+              description: "Product does not exist",
+            })
+          }
+        })
+    }
+
+    if (type == 'update') {
+      this.setState({
+        visibleModal: true,
+      })
+    }
   }
 
   handleChangeInput = e => {
@@ -65,10 +101,36 @@ class DrawerProductDetail extends Component {
     })
   }
 
+  handleCancelModal = () => {
+    this.setState({
+      visibleModal: false,
+    })
+  }
+
+  renderModalAddProduct() {
+    const { visibleModal, product } = this.state;
+    const { id, name, price, description, category, imageURL } = product;
+
+    return(
+      visibleModal && <ModalProduct
+        visibleAddProduct={visibleModal}
+        isCreate={false}
+        callback={e => {this.handleCancelModal()}}
+        name={name}
+        price={price}
+        description={description}
+        category={category}
+        imageURL={imageURL}
+        id={id}
+      />
+    )
+  }
+
   renderDrawerContent() {
-    const { isHome, productQuantity } = this.props;
+    const { isHome, productQuantity, user } = this.props;
     const { product } = this.state;
     const { id, name, category, price, description, imageURL} = product;
+    const { type } = user;
 
     return(
       <div className="drawer-background">
@@ -105,16 +167,28 @@ class DrawerProductDetail extends Component {
           />
         </div>
         <div className="line-button">
-          <Button
+          {type == 1 &&
+            <Button
+            danger
             className="drawer-button"
-            onClick={e => this.handleClick('cancel')}>
-            Cancel
-          </Button>
+            onClick={e => this.handleClick('delete', id)}
+            >
+              Delete
+            </Button>
+          }
           {isHome && 
             <Button
               className="drawer-button"
               onClick={e => this.handleClick('add_item', id)}>
               Add to cart
+            </Button>
+          }
+          {type == 1 &&
+            <Button
+            className="drawer-button"
+            onClick={e => this.handleClick('update', id)}
+            >
+              Edit
             </Button>
           }
         </div>
@@ -124,15 +198,20 @@ class DrawerProductDetail extends Component {
 
   render() {
     const { visibleDrawer, callback } = this.props
+    console.log(this.state.product)
+
     return(
-      <Drawer
-        visible={visibleDrawer}
-        onClose={() => callback(false)}
-        width={500}
-        title="Product detail"
-      >
-        {this.renderDrawerContent()}
-      </Drawer>
+      <div>
+        <Drawer
+          visible={visibleDrawer}
+          onClose={() => callback(false)}
+          width={500}
+          title="Product detail"
+        >
+          {this.renderDrawerContent()}
+        </Drawer>
+        {this.renderModalAddProduct()}
+      </div>
     )
   }
 }
@@ -140,6 +219,7 @@ class DrawerProductDetail extends Component {
 const mapStateToProps = state => {
   return {
     products: state.product.products,
+    user: state.user.user,
   }
 }
 

@@ -47,6 +47,11 @@
         margin: 0px 10px;
         border-radius: 4px;
       }
+
+      .add-new-button {
+        height: 40px;
+        border-radius: 4px;
+      }
     }
   }
 
@@ -82,6 +87,24 @@
           margin: 5px 0px;
         }
       }
+    }
+  }
+}
+
+.ant-modal-body {
+  display: flex;
+  flex-direction: column;
+  
+  .user-field {
+    display: flex;
+    flex-direction: row;
+
+    .field-title {
+      flex: 1;
+    }
+
+    .field-input {
+      flex: 1;
     }
   }
 }

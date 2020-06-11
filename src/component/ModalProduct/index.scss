@@ -1,0 +1,21 @@
+@import "../../../static/utilities.scss";
+
+.ant-modal-body {
+  display: flex;
+  flex-direction: column;
+  
+  .user-field {
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0px;
+
+    .field-title {
+      flex: 1;
+    }
+
+    .field-input {
+      flex: 2;
+      border-radius: 10px;
+    }
+  }
+}

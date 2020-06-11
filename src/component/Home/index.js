@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Menu, Input } from "antd";
+import { Menu, Input, Button, Modal } from "antd";
 import "./index.scss";
 import {
   fetchAllProduct,
-  fetchCartInfo
+  fetchCartInfo,
+  fetchUserInfo
 } from '../../action';
 
 import HomeMenu from '../Menu';
 import DrawerProductDetail from '../DrawerProductDetail';
+import ModalProduct from '../ModalProduct';
 
 const { Search } = Input;
 
@@ -19,11 +21,13 @@ class Home extends Component {
     this.state = {
       visibleDrawer: false,
       productId: 0,
+      visibleAddProduct: false,
+      userInfo: {},
     };
   }
 
   componentDidMount = async () => {
-    const { fetchAllProduct, fetchCartInfo }= this.props;
+    const { fetchAllProduct, fetchCartInfo, fetchUserInfo }= this.props;
     const params = {
       name: "",
       category: "",
@@ -31,6 +35,11 @@ class Home extends Component {
 
     await fetchAllProduct(params)
     await fetchCartInfo()
+    await fetchUserInfo().then(res => {
+      this.setState({
+        userInfo: res,
+      })
+    })
   }
 
   handleOnClickImage = id => {
@@ -63,6 +72,30 @@ class Home extends Component {
       category: key != "all" ? key : "",
     }
     await fetchAllProduct(params)
+  }
+
+  handleButtonAddNewProduct = e => {
+    this.setState({
+      visibleAddProduct: true,
+    })
+  }
+
+  handleCancelModal = e => {
+    this.setState({
+      visibleAddProduct: false,
+    })
+  }
+
+  renderModalAddProduct() {
+    const { visibleAddProduct } = this.state;
+
+    return(
+      <ModalProduct
+        visibleAddProduct={visibleAddProduct}
+        isCreate={true}
+        callback={e => {this.handleCancelModal()}}
+      />
+    )
   }
 
   renderDrawerProductDetail() {
@@ -102,7 +135,9 @@ class Home extends Component {
 
   render() {
     const { history } = this.props;
-
+    const { userInfo } = this.state;
+    const { type } = userInfo;
+ 
     return (
       <div className="home_content">
         <div className="home_menu">
@@ -127,6 +162,15 @@ class Home extends Component {
             </Menu>
           </div>
           <div className="search_input">
+            {type == 1 && 
+              <Button
+                className="add-new-button"
+                type="primary"
+                onClick={this.handleButtonAddNewProduct}
+              >
+                Add new product
+              </Button>
+            }
             <Search
               placeholder="Search"
               onSearch={value => this.handleSearch(value)}
@@ -138,6 +182,7 @@ class Home extends Component {
           {this.renderProductBoxes()}
         </div>
         {this.renderDrawerProductDetail()}
+        {this.renderModalAddProduct()}
       </div>
     );
   }
@@ -145,6 +190,7 @@ class Home extends Component {
 
 const mapStateToProps = state => {
   return {
+    auth: state.auth,
     user: state.user,
     products: state.product.products,
   }
@@ -154,6 +200,7 @@ export default connect(
   mapStateToProps, 
   {
     fetchAllProduct,
-    fetchCartInfo
+    fetchCartInfo,
+    fetchUserInfo
   }
 )(Home);

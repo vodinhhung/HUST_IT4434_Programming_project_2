@@ -50,7 +50,6 @@ class UserDetail extends Component {
 
   getValueUserDetail = (type) => {
     const { user } = this.state;
-    console.log(user)
     return user && user.name? user[type] : "";
   }
 

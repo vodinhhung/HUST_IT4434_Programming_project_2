@@ -42,7 +42,6 @@ class HomeMenu extends Component {
 
   render() {
     const { auth } = this.props;
-    console.log(auth)
     const { name, type } = auth;
 
     const menu = (
