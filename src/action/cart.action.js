@@ -17,7 +17,7 @@ export const fetchCartInfo = () => dispatch => {
       url,
       options)
     .then(res => {
-      if (res.data.status === "Success" && res.data.username) {
+      if (res.data.status === "Success") {
         dispatch({
           type: FETCH_CART_DETAIL,
           payload: res.data,
@@ -28,7 +28,7 @@ export const fetchCartInfo = () => dispatch => {
   });
 };
 
-export const addProductToCart = () => dispatch => {
+export const addProductToCart = params => dispatch => {
   let url = `https://hustshop.azurewebsites.net/rest/connect/additem`;
   const options = {
     headers: {
@@ -40,14 +40,19 @@ export const addProductToCart = () => dispatch => {
     .post(
       url,
       qs.stringify({
-        productId: 0,
-        quantity: 1,
+        productID: params.productID,
+        quantity: params.quantity,
       }),
       options,
     ). then(res => {
+      if (res.data.message === "Removed") {
+        
+      }
       dispatch({
         type: "",
         payload: res.data,
       })
+      
+      return res.data;
     })
 }

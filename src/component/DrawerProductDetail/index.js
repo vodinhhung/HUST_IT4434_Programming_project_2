@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 
-import { Drawer, Input, Button } from "antd";
+import { Drawer, Input, Button, notification } from "antd";
 import { connect } from "react-redux";
 import './index.scss';
 import { cloneDeep } from 'lodash';
+import {
+  addProductToCart
+} from '../../action'
 
 class DrawerProductDetail extends Component {
   constructor(props){
@@ -11,6 +14,7 @@ class DrawerProductDetail extends Component {
 
     this.state = {
       product: {},
+      quantity: 0,
     }
   }
 
@@ -19,7 +23,6 @@ class DrawerProductDetail extends Component {
 
     for (let i=0; i<products.length; i++){
       if(products[i].id === productId){
-        console.log(products[i])
         this.setState({
           product: cloneDeep(products[i]),
         })
@@ -27,17 +30,43 @@ class DrawerProductDetail extends Component {
     }
   }
 
-  handleClick = type => {
-    const { callback } = this.props;
-    console.log(type)
+  handleClick = (type, id) => {
+    const { callback, addProductToCart } = this.props;
+    const { quantity } = this.state;
 
     if(type == 'cancel'){
       callback(false)
     }
+    if (type == 'add_item'){
+      const params = {
+        productID: id,
+        quantity: quantity,
+      }
+      addProductToCart(params).then(res => {
+        if (res.status == "Success") {
+          return notification.open({
+            message: "Add to cart successfully"
+          })
+        } else {
+          return notification.open({
+            message: "Add to cart failed",
+            description: "You have not logged in"
+          })
+        }
+      })
+    }
+  }
+
+  handleChangeInput = e => {
+    const value = e.currentTarget.value;
+
+    this.setState({
+      quantity: value,
+    })
   }
 
   renderDrawerContent() {
-    const { isHome } = this.props;
+    const { isHome, productQuantity } = this.props;
     const { product } = this.state;
     const { id, name, category, price, description, imageURL} = product;
 
@@ -67,6 +96,14 @@ class DrawerProductDetail extends Component {
           <div className="line-title"> Description </div>
           <div className="line-input"> {description} </div>
         </div>
+        <div className="drawer-line">
+          <div className="line-title"> Quantity </div>
+          <Input
+            defaultValue={productQuantity}
+            className="line-input"
+            onChange={this.handleChangeInput}
+          />
+        </div>
         <div className="line-button">
           <Button
             className="drawer-button"
@@ -76,7 +113,7 @@ class DrawerProductDetail extends Component {
           {isHome && 
             <Button
               className="drawer-button"
-              onClick={e => this.handleClick('cancel')}>
+              onClick={e => this.handleClick('add_item', id)}>
               Add to cart
             </Button>
           }
@@ -109,6 +146,6 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {
-
+    addProductToCart
   }
 )(DrawerProductDetail);

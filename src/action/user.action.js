@@ -20,7 +20,6 @@ export const fetchUserInfo = () => dispatch => {
       options
     )
     .then(res => {
-      console.log(res)
       if (res.data.type === 0) {
         dispatch({
           type: FETCH_LOGIN_USERNAME,

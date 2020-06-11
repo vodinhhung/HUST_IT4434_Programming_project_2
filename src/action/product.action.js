@@ -8,10 +8,10 @@ export const fetchAllProduct = value => dispatch => {
   let url = `https://hustshop.azurewebsites.net/rest/connect/getproductinfo`;
 
   let params = {};
-  if (value.name != ""){
+  if (value && value.name && value.name != ""){
     params.name = value.name;
   }
-  if (value.category != ""){
+  if (value && value.name && value.category != ""){
     params.category = value.category;
   }
 

@@ -4,36 +4,175 @@
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
-  background-image: url("vietnam.jpg");
+  background-color: #f2f2f2;
+  align-items: stretch;
   
   .cart-menu {
     background-color: white;
     padding: 10px;
     display: flex;
-    flex-basis: 0px;
     background-color: #3399ff;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
+    position: sticky;
+    top: 0;
+  }
+
+  .cart-title {
+    font: 40px sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 0px 30px;
   }
 
   .cart-content {
-    align-self: center;
-    background-color: white;
-    width: 1000px;
-    border-radius: 10px;
+    border-radius: 4px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: flex-start;
-    margin: 30px 20px;
+    padding: 10px 30px;
+    flex-basis: 600px;
 
-    .cart-title{
-      margin: 40px;
-      font: 40px medium sans-serif;
-      padding-left: 40px;
+    .cart-products {
+      flex: 3;
+      display: flex;
+      flex-direction: column;
+
+      .nothing {
+        font: 25px sans-serif;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        margin: 30px 0px;
+      }
+
+      .item {
+        background-color: white;
+        margin-top: 20px;;
+        display: flex;
+        flex-direction: row;
+        border-radius: 4px;
+        justify-content: flex-start;
+        align-items: stretch;
+
+        .item-image {
+          width: 200px;
+          height: 100px;
+          margin: 20px;
+        }
+
+        .item-detail {
+          display: flex;
+          flex-direction: column;
+          width: 500px;
+
+          .detail {
+            font: 15px sans-serif;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin: 15px 5px;
+          }
+
+          .name {
+            font: 20px sans-serif;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin: 25px 5px 0px 5px;
+          }
+
+          .view-more {
+            font: 12px sans-serif;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin: 0px 5px;
+          }
+
+          .view-more:hover {
+            cursor: pointer;
+            color: lightblue;
+          }
+        }
+
+        .item-checkout {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          padding: 15px 10px;
+          align-items: flex-end;
+
+          .price {
+            font: 20px sans-serif;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin-bottom: 10px;
+          }
+
+          .quantity-input {
+            border-radius: 4px;
+            margin-bottom: 10px;
+            width: 60px;
+          }
+
+          .delete-button {
+            border-radius: 4px;
+          }
+        }
+      }
     }
 
-    .cart-product {
-      flex: 7;
-      
+    .cart-checkout {
+      flex: 1;
+      margin: 20px 20px;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+
+      .money-count {
+        font: 20px sans-serif;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        background-color: white;
+        height: 80px;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+
+      .deliver-address {
+        display: flex;
+        background-color: white;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+
+        .deliver-title{
+          font: 20px sans-serif;
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+          margin-bottom: 10px;
+        }
+
+        .deliver-content {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          margin: 10px 0px;
+
+          .deliver-content-title {
+            flex: 1;
+            justify-self: flex-start;
+            font: 15px sans-serif;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+          }
+
+          .deliver-content-content {
+            flex: 1;
+            font: 15px sans-serif;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+          }
+        }
+      }
+
+      .order-button {
+        margin: 20px 0px;
+        font: 20px sans-serif;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        height: 50px;
+      }
+
+      .order-button:hover {
+        background-color: lightblue;
+      }
     }
   }
 }
