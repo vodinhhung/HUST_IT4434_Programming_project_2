@@ -198,7 +198,6 @@ class DrawerProductDetail extends Component {
 
   render() {
     const { visibleDrawer, callback } = this.props
-    console.log(this.state.product)
 
     return(
       <div>

@@ -1,0 +1,132 @@
+@import "../../../static/utilities.scss";
+
+.account-background {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+
+  .account-menu {
+    padding: 10px;
+    display: flex;
+    flex-basis: 0px;
+    background-color: #3399ff;
+  }
+
+  .account-list {
+    background-color: #f2f2f2;
+    flex-basis: 600px;
+    padding: 10px 20px;
+
+    .account-list-title{
+      padding: 20px;
+      margin-left: 60px;
+      display: flex;
+      flex-direction: row;
+
+      .title {
+        flex: 1;
+        font: 40px sans-serif;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+
+      .search-input {
+        flex: 1;
+        flex-basis: 50vh;
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: row;
+        margin: 10px 40px;
+  
+        .search {
+          width: 300px;
+          height: 50px;
+          margin: 0px 10px;
+          border-radius: 20px;
+        }
+      }
+    }
+
+    .account-content {
+      display: flex;
+      flex-direction: column;
+
+      .account-content-title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin: 20px 60px;
+
+        .username {
+          font: 20px sans-serif;
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+          padding-left: 20px;
+          width: 32%;
+        }
+        
+        .order {
+          font: 20px sans-serif;
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+          width: 29%;
+        }
+
+        .status {
+          font: 20px sans-serif;
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+          justify-self: center;
+          width: 28%;
+        }
+
+        .block-button {
+          font: 20px sans-serif;
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+          width: 9%;
+        }
+      }
+
+      .account-content-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        background-color: white;
+        margin: 5px 60px;
+        flex-basis: 40px;
+        border-radius: 8px;
+        align-items: center;
+
+        .username-content {
+          font: 15px sans-serif;
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+          padding-left: 20px;
+          width: 30%;
+        }
+
+        .order-content {
+          width: 30%;
+
+          .button-content {
+            border-radius: 10px;
+          }
+        }
+
+        .status-content {
+          width: 30%;
+          justify-self: center;
+        }
+
+        .block-button-content {
+          width: 10%;
+        }
+      }
+    }
+  }
+}
+
+.ant-modal-body{
+  overflow: scroll;
+  height: 400px;
+  overflow-x: hidden;
+}
+
+.ant-input-wrapper {
+  border-radius: 10px;
+}

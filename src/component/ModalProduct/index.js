@@ -75,7 +75,6 @@ class ModalProduct extends Component {
         })
       )
       .then(res => {
-        console.log(res)
         if(res.data.status === "Success"){
           notification.open({
             message: "Update new product successfully"
@@ -107,11 +106,6 @@ class ModalProduct extends Component {
     const { name, category, price, description, imageURL } = this.state;
     const label = isCreate ? "Add new product" : "Edit product";
     const labelButton = isCreate ? "Create" : "Edit";
-    console.log(name)
-    console.log(category)
-    console.log(price)
-    console.log(description)
-    console.log(imageURL)
 
     return(
       <Modal

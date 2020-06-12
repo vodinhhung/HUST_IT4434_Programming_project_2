@@ -52,13 +52,13 @@ class HomeMenu extends Component {
         <Item key="/home"> Home </Item>
         <Item key="/userdetail"> Detail </Item>
         <Item key="/cart"> Cart </Item>
-        <Item key="logout"> Logout</Item>
         { type == 1 &&
           <Item key="/order"> Order </Item>
         }
         { type == 1 &&
           <Item key="/account"> Account </Item>
         }
+        <Item key="logout"> Logout</Item>
       </Menu>
     );
 
