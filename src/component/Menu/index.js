@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import axios from 'axios';
 
 import { Menu, Button, Dropdown } from 'antd';
-import { UserOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import { UserOutlined, ShoppingCartOutlined, SettingOutlined } from '@ant-design/icons';
 import './index.scss';
 
 const Item = Menu.Item;
@@ -40,39 +40,63 @@ class HomeMenu extends Component {
     })
   };
 
+  handleClickCart= () => {
+    const { history } = this.props;
+    history.push("/cart")
+  }
+
   render() {
     const { user } = this.props;
     const { type } = user;
 
-    const menu = (
+    const menuUser = (
       <Menu
         onClick={this.handleOnClinkMenu}
         className="menu-content"
       >
         <Item key="/home"> Home </Item>
         <Item key="/userdetail"> Detail </Item>
-        <Item key="/cart"> Cart </Item>
-        { type == 1 &&
-          <Item key="/order"> Order </Item>
-        }
-        { type == 1 &&
-          <Item key="/account"> Account </Item>
-        }
+        <Item key="/order"> Order </Item>
         <Item key="logout"> Logout</Item>
       </Menu>
     );
 
+    const menuAdmin = (
+      <Menu
+        onClick={this.handleOnClinkMenu}
+        className="menu-content"
+      >
+        <Item key="/order"> Manage order </Item>
+        <Item key="/account"> Manage account </Item>
+      </Menu>
+    )
+
     return(
       <div className="menu-background">
         <div className="menu-content"> HUSTSHOP </div>
-        <a
+        <div
           className="cart"
-          onClick={() => this.handleOnClinkMenu('/cart')}>
+          onClick={() => this.handleClickCart()}
+        >
           <ShoppingCartOutlined style={{ fontSize: 20}}/>
-        </a>
+        </div>
+        {type == 1 &&
+          <Dropdown
+            overlay={menuAdmin}
+            className="menu-dropdown"
+            placement="bottomRight"
+          >
+            <a 
+              className="ant-dropdown-link" 
+              onClick={e => e.preventDefault()}>
+              <SettingOutlined style={{ fontSize: 20}}/>
+            </a>
+          </Dropdown>
+        }
         <Dropdown
-          overlay={menu}
+          overlay={menuUser}
           className="menu-dropdown"
+          placement="bottomRight"
         >
           <a 
             className="ant-dropdown-link" 

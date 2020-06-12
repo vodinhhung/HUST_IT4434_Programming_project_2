@@ -11,7 +11,6 @@ import {
   fetchUserInfo,
 } from "../../action";
 import axios from "axios";
-import "./fifa1.jpg";
 
 const Search = Input.Search;
 const Panel = Collapse.Panel;
@@ -153,8 +152,6 @@ class Order extends Component {
   
   renderPanelContent = order => {
     const { userType, totalSum, checkoutTime, cartID, productList, user } = order;
-    console.log(cartID, "cart id")
-    console.log(productList)
 
     return (
       <div className="panel-content">
@@ -257,7 +254,7 @@ class Order extends Component {
         <div className="order-list">
           <div className="order-list-title">
             <div className="order-list-title-title">
-              Verifying Order
+              Verify order
             </div>
             {/* <div className="order-list-title-search-input">
               <Search
