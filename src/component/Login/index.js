@@ -99,6 +99,19 @@ class Login extends Component {
     let label = type === 'password'? "Password":"Username";
     let defaultValue = type === 'password'? password : userName;
 
+    if(type === 'password') {
+      return (
+        <div className="input_login">
+          <Input.Password
+            className="box_input"
+            onChange={(value) => this.handleChange(type, value)}
+            defaultValue={defaultValue}
+            placeholder={label}
+          />
+        </div>
+      )
+    }
+
     return (
       <div className="input_login">
         <Input

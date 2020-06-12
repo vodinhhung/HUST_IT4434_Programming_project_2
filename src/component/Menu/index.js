@@ -22,7 +22,7 @@ class HomeMenu extends Component {
       let url = `https://hustshop.azurewebsites.net/rest/connect/logout`;
 
       axios.get(url).then(res => {
-        if(res.data === "Logged out") {
+        if(res.data.status === "Success") {
           history.push("/")
         }
       })

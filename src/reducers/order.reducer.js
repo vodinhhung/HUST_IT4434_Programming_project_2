@@ -1,6 +1,6 @@
 import update from "immutability-helper";
 import {
-  FETCH_ORDER_LIST
+  FETCH_ORDER_LIST_ADMIN
 } from "../constant";
 
 const initialState = {
@@ -9,7 +9,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_ORDER_LIST:
+    case FETCH_ORDER_LIST_ADMIN:
       return update(state, { orders: { $set: action.payload }})
   }
 

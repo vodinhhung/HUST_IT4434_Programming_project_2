@@ -6,6 +6,8 @@ import axios from 'axios';
 
 import './index.scss';
 
+const TextArea = Input.TextArea;
+
 class ModalProduct extends Component {
   constructor(props) {
     super(props);
@@ -113,7 +115,7 @@ class ModalProduct extends Component {
         visible={visibleAddProduct}
         onCancel={callback}
         onOk={this.handleAddProduct}
-        className="modal-style"
+        // className="modal-style"
         footer={[
           <Button onClick={callback}>
             Cancel
@@ -123,50 +125,48 @@ class ModalProduct extends Component {
           </Button>
         ]}
       >
-        <div
-          className="modal-style"
-        >
-          <div className="ant-modal-body">
-            <div className="user-field">
-              <div className="field-title"> Name </div>
-              <Input
-                className="field-input"
-                value={name}
-                onChange={e => this.handleChangeInput(e, "name")}
-              />
-            </div>
-            <div className="user-field">
-              <div className="field-title"> Category </div>
-              <Input
-                className="field-input"
-                value={category}
-                onChange={e => this.handleChangeInput(e, "category")}
-              />
-            </div>
-            <div className="user-field">
-              <div className="field-title"> Price </div>
-              <Input
-                className="field-input"
-                value={price}
-                onChange={e => this.handleChangeInput(e, "price")}
-              />
-            </div>
-            <div className="user-field">
-              <div className="field-title"> Description </div>
-              <Input
-                className="field-input"
-                value={description}
-                onChange={e => this.handleChangeInput(e, "description")}
-              />
-            </div>
-            <div className="user-field">
-              <div className="field-title"> Image url </div>
-              <Input
-                className="field-input"
-                value={imageURL}
-                onChange={e => this.handleChangeInput(e, "imageURL")}
-              />
-            </div>
+        <div className="modal-style">
+          <div className="user-field">
+            <div className="field-title"> Name </div>
+            <Input
+              className="field-input"
+              value={name}
+              onChange={e => this.handleChangeInput(e, "name")}
+            />
+          </div>
+          <div className="user-field">
+            <div className="field-title"> Category </div>
+            <Input
+              className="field-input"
+              value={category}
+              onChange={e => this.handleChangeInput(e, "category")}
+            />
+          </div>
+          <div className="user-field">
+            <div className="field-title"> Price </div>
+            <Input
+              className="field-input"
+              value={price}
+              onChange={e => this.handleChangeInput(e, "price")}
+            />
+          </div>
+          <div className="user-field">
+            <div className="field-title"> Description </div>
+            <TextArea
+              className="field-input"
+              value={description}
+              onChange={e => this.handleChangeInput(e, "description")}
+              style={{ height: 100 }}
+            />
+          </div>
+          <div className="user-field">
+            <div className="field-title"> Image url </div>
+            <TextArea
+              className="field-input"
+              value={imageURL}
+              onChange={e => this.handleChangeInput(e, "imageURL")}
+              style={{ height: 70 }}
+            />
           </div>
         </div>
       </Modal>

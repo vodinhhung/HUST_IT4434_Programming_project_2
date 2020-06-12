@@ -10,10 +10,209 @@
     display: flex;
     flex-basis: 0px;
     background-color: #3399ff;
-    margin-bottom: 50px;
   }
 
   .order-list {
-    
+    background-color: #f2f2f2;
+    flex-basis: 600px;
+    padding: 20px;
+
+    .order-list-title {
+      padding: 20px;
+      margin-left: 60px;
+      display: flex;
+      flex-direction: row;
+
+      .order-list-title-title {
+        flex: 1;
+        font: 40px sans-serif;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+
+      .order-list-title-search-input {
+        flex: 1;
+        flex-basis: 50vh;
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: row;
+        margin: 10px 40px;
+  
+        .order-list-title-search {
+          width: 300px;
+          height: 50px;
+          margin: 0px 10px;
+          border-radius: 20px;
+        }
+      }
+    }
+
+    .order-content {
+      display: flex;
+      flex-direction: column;
+
+      .order-content-title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin: 20px 60px 5px 60px;
+
+        .id-title {
+          font: 20px sans-serif;
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+          padding-left: 20px;
+          width: 10%;
+        }
+
+        .user-title {
+          font: 20px sans-serif;
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+          width: 17%;
+        }
+
+        .checkoutdate-title {
+          font: 20px sans-serif;
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+          width: 17%;
+        }
+
+        .sum-title {
+          font: 20px sans-serif;
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+          width: 10%;
+        }
+      }
+
+      .order-collapse {
+        margin: 20px 60px;
+        border-radius: 20px;
+      }
+    }
+  }
+}
+
+.order-panel {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  
+  .id-panel {
+    font: 15px sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 10%;
+  }
+
+  .user-panel {
+    font: 15px sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 17%;
+  }
+
+  .checkout-panel {
+    font: 15px sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 25%;
+  }
+
+  .sum-panel {
+    font: 15px sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 10%;
+  }
+}
+
+.panel-content {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 50px;
+
+  .content-line {
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    margin: 10px 0px;
+
+    .line-title {
+      flex: 1;
+      font: 15px sans-serif;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    .line-info {
+      flex: 1;
+      font: 15px sans-serif;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+  }
+
+  .product-list {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0px;
+
+    .product-list-title {
+      font: 15px sans-serif;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      margin-bottom: 20px;
+    }
+
+    .product-list-info {
+      display: flex;
+      flex-direction: column;
+
+      .list-item {
+        display: flex;
+        flex-direction: row;
+        margin: 10px 10px 20px 10px;
+
+        .list-item-image {
+          width: 200px;
+          height: 120px;
+        }
+
+        .list-item-content {
+          display: flex;
+          flex-direction: column;
+          margin-left: 20px;
+
+          .list-item-content-item{
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 10px;
+            margin-left: 30px;
+            width: 500px;
+
+            .list-item-content-item-title {
+              flex: 1;
+              font: 15px sans-serif;
+              font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+
+            .list-item-content-item-info {
+              flex: 2;
+              font: 15px sans-serif;
+              font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+          }
+        }
+      }
+    }
+
+    .product-empty-list {
+      font: 15px sans-serif;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      margin: 20px 0px;
+      border-radius: 20px;
+      width: 150px;
+    }
+  }
+
+  .content-button {
+    display: flex;
+    flex-direction: row;
+    width: 25%;
+    justify-content: space-between;
+    margin-top: 20px;
   }
 }
