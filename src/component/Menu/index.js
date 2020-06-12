@@ -41,8 +41,8 @@ class HomeMenu extends Component {
   };
 
   render() {
-    const { auth } = this.props;
-    const { name, type } = auth;
+    const { user } = this.props;
+    const { type } = user;
 
     const menu = (
       <Menu
@@ -53,6 +53,12 @@ class HomeMenu extends Component {
         <Item key="/userdetail"> Detail </Item>
         <Item key="/cart"> Cart </Item>
         <Item key="logout"> Logout</Item>
+        { type == 1 &&
+          <Item key="/order"> Order </Item>
+        }
+        { type == 1 &&
+          <Item key="/account"> Account </Item>
+        }
       </Menu>
     );
 

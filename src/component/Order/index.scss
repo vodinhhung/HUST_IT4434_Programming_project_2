@@ -1,0 +1,19 @@
+@import "../../../static/utilities.scss";
+
+.order-background {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+
+  .order-menu {
+    padding: 10px;
+    display: flex;
+    flex-basis: 0px;
+    background-color: #3399ff;
+    margin-bottom: 50px;
+  }
+
+  .order-list {
+    
+  }
+}
