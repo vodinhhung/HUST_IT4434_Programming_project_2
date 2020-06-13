@@ -99,9 +99,15 @@ class DrawerProductDetail extends Component {
   handleChangeInput = e => {
     const value = e.currentTarget.value;
 
-    this.setState({
-      quantity: value,
-    })
+    if (value && (value < 1 || value > 50)) {
+      return notification.open({
+        message: "Quantity can't be under 0 or over 50"
+      })
+    } else {
+      this.setState({
+        quantity: value,
+      })
+    }
   }
 
   handleCancelModal = () => {
@@ -170,7 +176,7 @@ class DrawerProductDetail extends Component {
           />
         </div>
         <div className="line-button">
-          {type == 1 &&
+          {type == 1 && isHome &&
             <Button
             danger
             className="drawer-button"
@@ -186,7 +192,7 @@ class DrawerProductDetail extends Component {
               Add to cart
             </Button>
           }
-          {type == 1 &&
+          {type == 1 && isHome &&
             <Button
             className="drawer-button"
             onClick={e => this.handleClick('update', id)}

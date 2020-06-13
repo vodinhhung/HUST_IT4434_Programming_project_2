@@ -152,15 +152,6 @@ class OrderUser extends Component {
             </Button>
           </div>
         }
-        {/* <div className="user-content-button">
-          <Button
-            onClick={() => this.handleCancelOrder(cartID)}
-            style={{ borderRadius: 10, width: 100 }}
-            danger
-          >
-            Cancel
-          </Button>
-        </div> */}
       </div>
     )
   }

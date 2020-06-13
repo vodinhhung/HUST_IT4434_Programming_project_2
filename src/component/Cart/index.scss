@@ -18,9 +18,27 @@
   }
 
   .cart-title {
-    font: 40px sans-serif;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    // font: 40px sans-serif;
+    // font-family: Verdana, Geneva, Tahoma, sans-serif;
+    // padding: 0px 30px;
+    display: flex;
+    flex-direction: row;
     padding: 0px 30px;
+    align-items: center;
+
+    .cart-title-title {
+      flex: 1;
+      font: 40px sans-serif;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    .cart-title-balance {
+      flex: 1;
+      font: 20px sans-serif;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      justify-self: flex-end;
+      padding-left: 620px;
+    }
   }
 
   .cart-content {

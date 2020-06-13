@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Menu, Button, Dropdown } from 'antd';
 import { UserOutlined, ShoppingCartOutlined, SettingOutlined } from '@ant-design/icons';
 import './index.scss';
+import Logo from './logo.png'
 
 const Item = Menu.Item;
 
@@ -73,6 +74,7 @@ class HomeMenu extends Component {
 
     return(
       <div className="menu-background">
+        <img src={Logo} className="menu-logo"/>
         <div className="menu-content"> HUSTSHOP </div>
         <div
           className="cart"

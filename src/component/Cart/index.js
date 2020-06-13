@@ -27,6 +27,7 @@ class Cart extends Component {
       visibleDrawer: false,
       productID: 0,
       productQuantity: 0,
+      balance: 0,
     }
   }
 
@@ -45,6 +46,20 @@ class Cart extends Component {
         userInfo: res,
       })
     })
+    await this.getBalance()
+  }
+
+  getBalance = () => {
+    let url = `https://hustshop.azurewebsites.net/rest/connect/getbalance`;
+
+    axios.get(url)
+      .then(res => {
+        if(res.status === 200) {
+          this.setState({
+            balance: res.data.balance,
+          })
+        }
+      })
   }
 
   handleCloseDrawer = () => {
@@ -112,6 +127,8 @@ class Cart extends Component {
   }
 
   handleClickOrder = e => {
+    const { fetchCartInfo } = this.props;
+
     let url = `https://hustshop.azurewebsites.net/rest/connect/pay`;
 
     return axios
@@ -121,6 +138,13 @@ class Cart extends Component {
           notification.open({
             message: "Order successfully",
             description: "Order will be tranfered to your address soon",
+          })
+
+          fetchCartInfo().then(res => {
+            this.setState({
+              cart: res,
+              products: res.products,
+            })
           })
         } else {
           notification.open({
@@ -243,6 +267,7 @@ class Cart extends Component {
 
   render() {
     const { history } = this.props;
+    const { balance } = this.state;
 
     return(
       <div className="home-cart">
@@ -252,7 +277,12 @@ class Cart extends Component {
           />
         </div>
         <div className="cart-title">
-          Shopping cart
+          <div className="cart-title-title">
+            Shopping cart
+          </div>
+          <div className="cart-title-balance">
+            Balance: {balance} đ
+          </div>
         </div>
         <div className="cart-content">
           <div className="cart-products">
