@@ -16,17 +16,26 @@ class Login extends Component {
     this.state = {
       userName: "",
       password: "",
+      email: "",
       isCreating: false,
-      isLogin: false,
+      isLogin: true,
     }
+  }
+
+  handleClickChangeToCreate = () => {
+    this.setState({
+      isCreating: true,
+      isLogin: false,
+    })
   }
 
   handleChange = (type, value) => {
     if (type === 'username'){
       this.setState({ userName: value.currentTarget.value});
-    }
-    if (type === 'password'){
+    } else if (type === 'password'){
       this.setState({ password: value.currentTarget.value});
+    } else {
+      this.setState({ email: value.currentTarget.value});
     }
   }
 
@@ -60,10 +69,10 @@ class Login extends Component {
   }
 
   handleSignUp = async () => {
-    const { userName, password } = this.state;
+    const { userName, password, email } = this.state;
     const { createNewCustomer } = this.props;
 
-    if (this.checkNull(userName) || this.checkNull(password)){
+    if (this.checkNull(userName) || this.checkNull(password) || this.checkNull(email)){
       return notification.open({
         message: "Signup fail",
         description: "Username or password can't be empty",
@@ -73,14 +82,19 @@ class Login extends Component {
     let params = {
       username: userName,
       password: password,
+      email: email,
     }
 
     await createNewCustomer(params)
       .then(res => {
         if (res.status === 'Success'){
-          return notification.open({
+          notification.open({
             message: "Signup success",
             description: "Enter username and password to login",
+          })
+          this.setState({
+            isCreating: false,
+            isLogin: true,
           })
         } else {
           return notification.open({
@@ -94,10 +108,14 @@ class Login extends Component {
   checkNull = value => value === null || value === ''
 
   renderInputForm(type) {
-    const { userName, password } = this.state;
+    const { userName, password, email } = this.state;
 
     let label = type === 'password'? "Password":"Username";
     let defaultValue = type === 'password'? password : userName;
+    if(type === 'email') {
+      label = "Email";
+      defaultValue = email
+    } 
 
     if(type === 'password') {
       return (
@@ -125,8 +143,8 @@ class Login extends Component {
   }
 
   render(){
-    const { isSignup } = this.props;
-    const title = isSignup? "Signup" : "Login"
+    const { isCreating, isLogin } = this.state;
+    const title = isCreating? "Sign up" : "Login"
 
     return(
       <div className="login_background">
@@ -136,21 +154,33 @@ class Login extends Component {
           </div>
           <div className="login_input">
             {this.renderInputForm('username')}
+            {isCreating && this.renderInputForm('email')}
             {this.renderInputForm('password')}
           </div>
+          {isLogin && 
+            <div 
+            className="create_account"
+            onClick={() => this.handleClickChangeToCreate()}>
+            Create an account
+            </div>
+          }
           <div className="login_button">
-            <Button
-              onClick={() => this.handleClickSignInButton()}
-              className="button"
-            >
-              Login
-            </Button>
-            <Button
-              onClick={() => this.handleSignUp()}
-              className="button"
-            >
-              Sign up
-            </Button>
+            {isLogin && 
+              <Button
+                onClick={() => this.handleClickSignInButton()}
+                className="button"
+              >
+                Login
+              </Button>
+            }
+            {isCreating && 
+              <Button
+                onClick={() => this.handleSignUp()}
+                className="button"
+              >
+                Sign up
+              </Button>
+            }
           </div>
         </div>
       </div>

@@ -158,6 +158,13 @@ class Account extends Component {
         title="Orders list"
         visible={visibleOrderModal}
         onCancel={() => this.handleCancelOrderModal()}
+        footer={
+          <Button
+            onClick={() => this.handleCancelOrderModal()}
+          >
+            Cancel
+          </Button>
+        }
       >
         <Table
           dataSource={this.getOrderData()}

@@ -51,6 +51,7 @@ export const createNewCustomer = params => dispatch => {
       qs.stringify({
         username: params.username,
         password: params.password,
+        email: params.email,
       }),
       options,
     )
