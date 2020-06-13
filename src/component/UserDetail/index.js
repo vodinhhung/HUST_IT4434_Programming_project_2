@@ -1,13 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import axios from 'axios';
+import { Input, Button, notification, Collapse } from 'antd';
+import qs from 'querystring';
+
 import {
   fetchUserInfo,
   updateUserInfo
 } from "./../../action";
-
-import { Input, Button, notification } from 'antd';
 import HomeMenu from "./../Menu";
 import './index.scss';
+import Fifa from './fifa.jpg';
+
+const Panel = Collapse.Panel;
+const Password = Input.Password;
 
 class UserDetail extends Component {
   constructor(props) {
@@ -16,6 +22,8 @@ class UserDetail extends Component {
     this.state = {
       user: props.user,
       isChangeUser: false,
+      newPassword: "",
+      verifyPassword: "",
     }
   }
 
@@ -51,6 +59,89 @@ class UserDetail extends Component {
   getValueUserDetail = (type) => {
     const { user } = this.state;
     return user && user.name? user[type] : "";
+  }
+
+  handleEnterPassword = (value, type) => {
+    if(type === "new") {
+      this.setState({ newPassword: value})
+    } else {
+      this.setState({ verifyPassword: value })
+    }
+  }
+
+  handleClickChangePassword = () => {
+    const { newPassword, verifyPassword } = this.state;
+
+    if (newPassword !== verifyPassword) {
+      return notification.open({
+        message: "Password re-enter not right"
+      })
+    } else {
+      let url = `https://hustshop.azurewebsites.net/rest/connect/updatepassword`;
+      
+
+      axios
+        .post(
+          url,
+          qs.stringify({
+            password: newPassword,
+          }))
+        .then(res => {
+          console.log(res)
+          if(res.data.status === "Success") {
+            return notification.open({
+              message: "Change password successfully"
+            })
+          }
+        })
+    }
+  }
+
+  renderChangePasswordView() {
+    return(
+      <div className="change-password-view">
+        <div className="change-password-line">
+          <div className="change-password-line-title"> Old password </div>
+          <Password
+            placeholder="Enter old password"
+            className="change-password-line-input"
+          />
+        </div>
+        <div className="change-password-line">
+          <div className="change-password-line-title"> New password </div>
+          <Password
+            placeholder="Enter new password"
+            className="change-password-line-input"
+            onChange={e=> this.handleEnterPassword(e.currentTarget.value, "new")}
+          />
+        </div>
+        <div className="change-password-line">
+          <div className="change-password-line-title"> New password </div>
+          <Password
+            placeholder="Re-enter new password"
+            className="change-password-line-input"
+            onChange={e=> this.handleEnterPassword(e.currentTarget.value, "verify")}
+          />
+        </div>
+        <Button
+          onClick={this.handleClickChangePassword}
+          className="button-password">
+          Change password
+        </Button>
+      </div>
+    )
+  }
+
+  renderHeaderPanel = type => {
+    let label = type === "userdetail"
+      ? "Edit personal information"
+      : "Change password"
+
+    return(
+      <div className="userdetail-header-panel">
+        {label}
+      </div>
+    )
   }
 
   renderInfoDetail() {
@@ -142,7 +233,34 @@ class UserDetail extends Component {
             history={history}
           />
         </div>
-        <div className="user-info">
+        <img src={Fifa} className="image-backup">
+        </img>
+        <Collapse 
+          accordion
+          className="userdetail-collapse">
+          <Panel header={this.renderHeaderPanel("userdetail")}>
+            <div className="user-info">
+              {/* <div className="info-title">
+                User information
+              </div> */}
+              {this.renderInfoDetail()}
+              <div className="info-button-line">
+                <Button
+                  className="info-button"
+                  onClick={this.handleUpdateUser}
+                  >
+                  Update
+                </Button>
+              </div>
+            </div>
+          </Panel>
+          <Panel header={this.renderHeaderPanel("password")}>
+            <div>
+              {this.renderChangePasswordView()}
+            </div>
+          </Panel>
+        </Collapse>
+        {/* <div className="user-info">
           <div className="info-title">
             User information
           </div>
@@ -155,7 +273,7 @@ class UserDetail extends Component {
               Update
             </Button>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }

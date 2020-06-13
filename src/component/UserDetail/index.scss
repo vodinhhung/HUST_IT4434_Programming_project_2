@@ -4,13 +4,24 @@
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
-  background-image: url("vietnam.jpg");
+  // background-image: url("vietnam.jpg");
 
   .side-image {
     padding: 10px;
     display: flex;
     flex-basis: 0px;
     background-color: #3399ff;
+  }
+
+  .image-backup {
+    height: 400px;
+    margin-bottom: 50px;
+  }
+
+  .userdetail-collapse {
+    width: 800px;
+    align-self: center;
+    border-radius: 4px;
     margin-bottom: 50px;
   }
 
@@ -18,11 +29,12 @@
     align-self: center;
     background-color: white;
     width: 800px;
-    border-radius: 10px;
+    border-radius: 4px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin: 30px 20px;
+    margin: 0px 20px;
+    padding: 15px 0px;
 
     .info-title {
       margin: 40px 20px;
@@ -66,4 +78,46 @@
       }
     }
   }
+
+  .change-password-view {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 120px;
+
+    .change-password-line {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 20px;
+
+      .change-password-line-title {
+        flex: 1;
+        font: 15px sans-serif;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+
+      .change-password-line-input {
+        border-radius: 10px;
+        flex: 3;
+        margin-left: 50px;
+      }
+    }
+
+    .button-password {
+      width: 120px;
+      align-self: center;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+  }
+}
+
+.userdetail-header-panel {
+  font: 20px sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 50px;
 }
