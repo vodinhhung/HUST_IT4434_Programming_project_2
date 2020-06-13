@@ -1,0 +1,218 @@
+@import "../../../static/utilities.scss";
+
+.user-order-background {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+
+  .user-order-menu {
+    padding: 10px;
+    display: flex;
+    flex-basis: 0px;
+    background-color: #3399ff;
+  }
+
+  .user-order-list {
+    background-color: #f2f2f2;
+    flex-basis: 600px;
+    padding: 20px;
+
+    .user-order-list-title {
+      padding: 20px;
+      margin-left: 60px;
+      display: flex;
+      flex-direction: row;
+
+      .user-order-list-title-title {
+        flex: 1;
+        font: 40px sans-serif;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+
+      .user-order-list-title-search-input {
+        flex: 1;
+        flex-basis: 50vh;
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: row;
+        margin: 10px 40px;
+  
+        .user-order-list-title-search {
+          width: 300px;
+          height: 50px;
+          margin: 0px 10px;
+          border-radius: 20px;
+        }
+      }
+    }
+
+    .user-order-content {
+      display: flex;
+      flex-direction: column;
+
+      .user-order-content-title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin: 20px 60px 5px 60px;
+
+        .user-id-title {
+          font: 20px sans-serif;
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+          padding-left: 20px;
+          width: 10%;
+        }
+
+        .user-user-title {
+          font: 20px sans-serif;
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+          width: 17%;
+        }
+
+        .user-checkoutdate-title {
+          font: 20px sans-serif;
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+          width: 17%;
+        }
+
+        .user-sum-title {
+          font: 20px sans-serif;
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+          width: 10%;
+        }
+      }
+
+      .user-order-collapse {
+        margin: 20px 60px;
+        border-radius: 20px;
+      }
+    }
+  }
+}
+
+.user-order-panel {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  
+  .user-id-panel {
+    font: 15px sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 10%;
+  }
+
+  .user-user-panel {
+    font: 15px sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 17%;
+  }
+
+  .user-checkout-panel {
+    font: 15px sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 25%;
+  }
+
+  .user-sum-panel {
+    font: 15px sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 10%;
+  }
+}
+
+.user-panel-content {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 50px;
+
+  .user-content-line {
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    margin: 10px 0px;
+
+    .user-line-title {
+      flex: 1;
+      font: 15px sans-serif;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    .user-line-info {
+      flex: 1;
+      font: 15px sans-serif;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+  }
+
+  .user-product-list {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0px;
+
+    .user-product-list-title {
+      font: 15px sans-serif;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      margin-bottom: 20px;
+    }
+
+    .user-product-list-info {
+      display: flex;
+      flex-direction: column;
+
+      .user-list-item {
+        display: flex;
+        flex-direction: row;
+        margin: 10px 10px 20px 10px;
+
+        .user-list-item-image {
+          width: 200px;
+          height: 120px;
+        }
+
+        .user-list-item-content {
+          display: flex;
+          flex-direction: column;
+          margin-left: 20px;
+
+          .user-list-item-content-item{
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 10px;
+            margin-left: 30px;
+            width: 500px;
+
+            .user-list-item-content-item-title {
+              flex: 1;
+              font: 15px sans-serif;
+              font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+
+            .user-list-item-content-item-info {
+              flex: 2;
+              font: 15px sans-serif;
+              font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+          }
+        }
+      }
+    }
+
+    .user-product-empty-list {
+      font: 15px sans-serif;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      margin: 20px 0px;
+      border-radius: 20px;
+      width: 150px;
+    }
+  }
+
+  .user-content-button {
+    display: flex;
+    flex-direction: row;
+    width: 25%;
+    justify-content: space-between;
+    padding-left: 20px;
+  }
+}

@@ -55,14 +55,21 @@ class Cart extends Component {
   }
 
   handleChangeQuantity = async (e, id, quantity) => {
-    const { addProductToCart } = this.props;
+    const { addProductToCart, fetchCartInfo } = this.props;
     let params = {
       productID: id,
       quantity: e.currentTarget.value - quantity,
     } 
 
     await addProductToCart(params).then(res => {
-      
+      if(res.status === "Success") {
+        fetchCartInfo().then(res => {
+          this.setState({
+            cart: res,
+            products: res.products,
+          })
+        })
+      }
     })
   }
 

@@ -256,14 +256,6 @@ class Order extends Component {
             <div className="order-list-title-title">
               Verify order
             </div>
-            {/* <div className="order-list-title-search-input">
-              <Search
-                placeholder="Enter order name to search"
-                className="order-list-title-search"
-                enterButton={true}
-                onSearch={this.handleSearchOrder}
-              />
-            </div> */}
           </div>
           <div className="order-content">
             <div className="order-content-title">

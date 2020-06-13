@@ -5,6 +5,7 @@ import {
   FETCH_LOGIN_TYPE,
 } from "../constant";
 import qs from 'querystring';
+import { notification } from 'antd';
 
 export const fetchUserInfo = () => dispatch => {
   let url = `https://hustshop.azurewebsites.net/rest/connect/getuserinfo`;
@@ -70,8 +71,11 @@ export const updateUserInfo = params => dispatch => {
       if (res.data.status === "Success" && res.data.username) {
         dispatch({
           type: FETCH_USER_INFO,
-          payload: res.data.username
+          payload: res.data
         });
+        notification.open({
+          message: "Update information successfully"
+        })
       }
 
       return res.data;

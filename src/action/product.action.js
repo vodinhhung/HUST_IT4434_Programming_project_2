@@ -27,5 +27,7 @@ export const fetchAllProduct = value => dispatch => {
         payload: res.data,
       })
     }
+
+    return res.data;
   })
 }

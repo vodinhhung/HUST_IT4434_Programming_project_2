@@ -11,7 +11,7 @@ import UserDetail from './component/UserDetail';
 import Cart from './component/Cart';
 import Order from './component/Order';
 import Account from './component/Account';
-
+import OrderUser from './component/OrderUser';
 
 const store = initStore()
 
@@ -25,6 +25,7 @@ ReactDOM.render(
         <Route path='/cart' component={Cart}/>
         <Route path='/order' component={Order}/>
         <Route path='/account' component={Account}/>
+        <Route path='/userorder' component={OrderUser}/>
       </div>
     </Router>
   </Provider>,

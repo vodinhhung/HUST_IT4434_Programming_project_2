@@ -5,6 +5,7 @@ import cart from './cart.reducer';
 import product from './product.reducer';
 import order from './order.reducer';
 import account from './account.reducer';
+import ordersuser from './orderUser.reducer';
 
 export default combineReducers({
     auth,
@@ -13,4 +14,5 @@ export default combineReducers({
     product,
     order, 
     account,
+    ordersuser,
 })

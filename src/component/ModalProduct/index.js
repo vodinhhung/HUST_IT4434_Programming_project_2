@@ -5,6 +5,9 @@ import qs from 'querystring';
 import axios from 'axios';
 
 import './index.scss';
+import {
+  fetchAllProduct,
+} from '../../action'
 
 const TextArea = Input.TextArea;
 
@@ -23,7 +26,7 @@ class ModalProduct extends Component {
   }
 
   handleAddProduct = () => {
-    const { callback } = this.props;
+    const { callback, fetchAllProduct } = this.props;
     const { name, category, price, description, imageURL } = this.state;
     let url = `https://hustshop.azurewebsites.net/rest/connect/createproduct`;
     
@@ -50,7 +53,9 @@ class ModalProduct extends Component {
             description: "",
             imageURL: "",
           })
-          callback()
+          fetchAllProduct().then(res => {
+            callback()
+          })
         } else {
           notification.open({
             message: "Create new product fail",
@@ -183,6 +188,6 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {
-
+    fetchAllProduct
   }
 )(ModalProduct);

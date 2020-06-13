@@ -56,7 +56,7 @@ class HomeMenu extends Component {
       >
         <Item key="/home"> Home </Item>
         <Item key="/userdetail"> Detail </Item>
-        <Item key="/order"> Order </Item>
+        <Item key="/userorder"> Order </Item>
         <Item key="logout"> Logout</Item>
       </Menu>
     );

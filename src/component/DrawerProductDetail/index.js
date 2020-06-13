@@ -5,7 +5,8 @@ import { connect } from "react-redux";
 import './index.scss';
 import { cloneDeep } from 'lodash';
 import {
-  addProductToCart
+  addProductToCart,
+  fetchAllProduct
 } from '../../action';
 import axios from 'axios';
 import qs from 'querystring';
@@ -36,7 +37,7 @@ class DrawerProductDetail extends Component {
   }
 
   handleClick = (type, id) => {
-    const { callback, addProductToCart } = this.props;
+    const { callback, addProductToCart, fetchAllProduct } = this.props;
     const { quantity } = this.state;
 
     if(type == 'cancel'){
@@ -76,7 +77,9 @@ class DrawerProductDetail extends Component {
             notification.open({
               message: "Delete product success"
             })
-            callback(false)
+            fetchAllProduct().then(res => {
+              callback()
+            })
           } else {
             notification.open({
               message: "Delete product fail",
@@ -225,6 +228,7 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {
-    addProductToCart
+    addProductToCart,
+    fetchAllProduct
   }
 )(DrawerProductDetail);
