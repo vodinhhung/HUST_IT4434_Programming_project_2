@@ -59,10 +59,15 @@ class Login extends Component {
       .then(res => {
         if (res.status === 'Success'){
           history.push('/home')
-        } else {
+        } else if (res.status === "Fail/account locked"){
           return notification.open({
             message: "Login blocked",
             description: "",
+          })
+        } else {
+          return notification.open({
+            message: "Login fail",
+            description: "Username or password is not right"
           })
         }
       })

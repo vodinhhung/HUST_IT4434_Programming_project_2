@@ -24,6 +24,7 @@ class UserDetail extends Component {
       isChangeUser: false,
       newPassword: "",
       verifyPassword: "",
+      oldPassword: "",
     }
   }
 
@@ -64,13 +65,15 @@ class UserDetail extends Component {
   handleEnterPassword = (value, type) => {
     if(type === "new") {
       this.setState({ newPassword: value})
-    } else {
+    } else if(type === "verify"){
       this.setState({ verifyPassword: value })
+    } else {
+      this.setState({ oldPassword: value })
     }
   }
 
   handleClickChangePassword = () => {
-    const { newPassword, verifyPassword } = this.state;
+    const { newPassword, verifyPassword, oldPassword } = this.state;
 
     if (newPassword !== verifyPassword) {
       return notification.open({
@@ -85,12 +88,18 @@ class UserDetail extends Component {
           url,
           qs.stringify({
             password: newPassword,
+            oldpassword: oldPassword,
           }))
         .then(res => {
           console.log(res)
           if(res.data.status === "Success") {
             return notification.open({
               message: "Change password successfully"
+            })
+          } else if (res.data.status === "Fail/credentials don't match"){
+            return notification.open({
+              message: "Change password fail",
+              description: "Old password not right"
             })
           }
         })
@@ -105,6 +114,7 @@ class UserDetail extends Component {
           <Password
             placeholder="Enter old password"
             className="change-password-line-input"
+            onChange={e => this.handleEnterPassword(e.currentTarget.value, "old")}
           />
         </div>
         <div className="change-password-line">
