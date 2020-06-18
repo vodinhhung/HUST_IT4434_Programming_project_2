@@ -126,7 +126,7 @@ class Home extends Component {
           <div className="product_info">
             <div>{category}</div>
             <div className="name">{name}</div>
-            <div>{price}</div>
+            <div>{price}đ </div>
           </div>
         </div>
       )

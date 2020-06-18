@@ -61,7 +61,7 @@ class Login extends Component {
           history.push('/home')
         } else {
           return notification.open({
-            message: "Login fail",
+            message: "Login blocked",
             description: "",
           })
         }
@@ -106,6 +106,13 @@ class Login extends Component {
   }
 
   checkNull = value => value === null || value === ''
+
+  handleClickReturnLogin = () => {
+    this.setState({
+      isCreating: false,
+      isLogin: true,
+    })
+  }
 
   renderInputForm(type) {
     const { userName, password, email } = this.state;
@@ -162,6 +169,13 @@ class Login extends Component {
             className="create_account"
             onClick={() => this.handleClickChangeToCreate()}>
             Create an account
+            </div>
+          }
+          {isCreating && 
+            <div
+              className="create_account"
+              onClick={() => this.handleClickReturnLogin()}>
+                Return to login
             </div>
           }
           <div className="login_button">

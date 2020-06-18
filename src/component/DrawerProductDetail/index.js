@@ -45,6 +45,11 @@ class DrawerProductDetail extends Component {
     }
 
     if (type == 'add_item'){
+      if (quantity < 1 || quantity > 50) {
+        return notification.open({
+          message: "Quanitity can't be under 1 or over 50",
+        })
+      }
       const params = {
         productID: id,
         quantity: quantity,
@@ -101,7 +106,7 @@ class DrawerProductDetail extends Component {
 
     if (value && (value < 1 || value > 50)) {
       return notification.open({
-        message: "Quantity can't be under 0 or over 50"
+        message: "Quantity can't be under 1 or over 50"
       })
     } else {
       this.setState({

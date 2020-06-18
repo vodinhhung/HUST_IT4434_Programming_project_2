@@ -25,9 +25,17 @@ class Account extends Component {
   componentDidMount= async () => {
     const  { fetchAccountList } = this.props;
     await fetchAccountList().then(res => {
-      this.setState({
-        accounts: res.accounts,
-      })
+      if(res.status === "Success") {
+        this.setState({
+          accounts: res.accounts,
+        })
+      }
+      else {
+        return notification.open({
+          message: "Load list of accounts fail",
+          description: "Account unauthorized",
+        })
+      }
     })
   }
 
@@ -125,6 +133,11 @@ class Account extends Component {
             visibleOrderModal: true,
             orders: res.data.order,
           })
+        } else {
+          return notification.open({
+            message: "Can not view orderlist of user",
+            description: "You need to login again",
+          })
         }
       })
   }
@@ -144,9 +157,16 @@ class Account extends Component {
 
     fetchAccountList(params)
       .then(res => {
-        this.setState({
-          accounts: res.accounts,
-        })
+        if (res.status === "Success") {
+          this.setState({
+            accounts: res.accounts,
+          })
+        } else {
+          return notification.open({
+            message: "Search account failed",
+            description: "Account unauthorized",
+          })
+        }
       })
   }
 

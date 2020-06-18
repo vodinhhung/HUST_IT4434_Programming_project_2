@@ -46,6 +46,11 @@ class HomeMenu extends Component {
     history.push("/cart")
   }
 
+  handleClickHome = () => {
+    const { history } = this.props;
+    history.push('/home')
+  }
+
   render() {
     const { user } = this.props;
     const { type } = user;
@@ -74,7 +79,7 @@ class HomeMenu extends Component {
 
     return(
       <div className="menu-background">
-        <img src={Logo} className="menu-logo"/>
+        <img src={Logo} className="menu-logo" onClick={() => this.handleClickHome()}/>
         <div className="menu-content"> HUSTSHOP </div>
         <div
           className="cart"
