@@ -50,10 +50,12 @@ class DrawerProductDetail extends Component {
           message: "Quanitity can't be under 1 or over 50",
         })
       }
+      console.log("come here")
       const params = {
         productID: id,
         quantity: quantity,
       }
+      console.log("quantity of product", quantity)
       addProductToCart(params).then(res => {
         if (res.status == "Success") {
           return notification.open({
@@ -103,12 +105,13 @@ class DrawerProductDetail extends Component {
 
   handleChangeInput = e => {
     const value = e.currentTarget.value;
-
+    console.log(value, "value beforr set state")
     if (value && (value < 1 || value > 50)) {
       return notification.open({
         message: "Quantity can't be under 1 or over 50"
       })
     } else {
+      console.log(value, "value in set satte in handle change")
       this.setState({
         quantity: value,
       })

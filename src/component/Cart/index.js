@@ -146,9 +146,20 @@ class Cart extends Component {
               products: res.products,
             })
           })
-        } else {
+        } else if (res.data.status === "Fail/unauthorized") {
           notification.open({
-            message: "Login to proceed order"
+            message: "Proceed to order fail",
+            description: "Login to proceed order",
+          })
+        } else if (res.data.status === "Fail/cart empty") {
+          return notification.open({
+            message: "Proceed to order fail",
+            description: "Can not proceed to order when cart is empty",
+          })
+        } else if (res.data.status === "Fail/insufficient funds") {
+          return notification.open({
+            message: "Proceed to order fail",
+            description: "Balance is not enough"
           })
         }
       })

@@ -75,6 +75,12 @@ class UserDetail extends Component {
   handleClickChangePassword = () => {
     const { newPassword, verifyPassword, oldPassword } = this.state;
 
+    if(newPassword || newPassword === "") {
+      return({
+        message: "New password can not be empty",
+      })
+    }
+
     if (newPassword !== verifyPassword) {
       return notification.open({
         message: "Password re-enter not right"
@@ -110,7 +116,7 @@ class UserDetail extends Component {
     return(
       <div className="change-password-view">
         <div className="change-password-line">
-          <div className="change-password-line-title"> Old password </div>
+          <div className="change-password-line-title"> Current password </div>
           <Password
             placeholder="Enter old password"
             className="change-password-line-input"
@@ -126,7 +132,7 @@ class UserDetail extends Component {
           />
         </div>
         <div className="change-password-line">
-          <div className="change-password-line-title"> New password </div>
+          <div className="change-password-line-title"> Verify new password </div>
           <Password
             placeholder="Re-enter new password"
             className="change-password-line-input"
@@ -174,7 +180,7 @@ class UserDetail extends Component {
           />
         </div>
         <div className="info-line">
-          <div className="info-line-title"> Birthday </div>
+          <div className="info-line-title"> Birthday (YYYY-MM-DD) </div>
           <Input
             className="info-input"
             onChange={e => this.handleOnChangeInput(e.currentTarget.value, "birthday")}
