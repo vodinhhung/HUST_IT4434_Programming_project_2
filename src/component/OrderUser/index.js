@@ -59,10 +59,15 @@ class OrderUser extends Component {
                 })
               }
             })
+        } else if (res.data.status === "Fail/cartID check failed"){
+          notification.open({
+            message: "Cancel order fail",
+            description: "Can not find cart",
+          })
         } else {
           notification.open({
             message: "Cancel order fail",
-            description: "CartId check failed",
+            description: "Please login to cancel order"
           })
         }
       })

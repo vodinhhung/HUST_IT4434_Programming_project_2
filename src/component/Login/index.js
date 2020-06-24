@@ -101,10 +101,15 @@ class Login extends Component {
             isCreating: false,
             isLogin: true,
           })
+        } else if(res.status === "Fail/username already exists") {
+          return notification.open({
+            message: "Signup fail",
+            description: "Username already exists",
+          })
         } else {
           return notification.open({
             message: "Signup fail",
-            description: "",
+            description: "Email already exists",
           })
         }
       })

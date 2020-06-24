@@ -151,7 +151,7 @@ class Cart extends Component {
             message: "Proceed to order fail",
             description: "Login to proceed order",
           })
-        } else if (res.data.status === "Fail/cart empty") {
+        } else if (res.data.status === "Fail/cart empty" || res.data.status === "Fail/no cart") {
           return notification.open({
             message: "Proceed to order fail",
             description: "Can not proceed to order when cart is empty",

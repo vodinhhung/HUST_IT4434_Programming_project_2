@@ -135,8 +135,8 @@ class Account extends Component {
           })
         } else {
           return notification.open({
-            message: "Can not view orderlist of user",
-            description: "You need to login again",
+            message: "Can not view order list of user",
+            description: "Please login as admin to view information and list of orders of user",
           })
         }
       })

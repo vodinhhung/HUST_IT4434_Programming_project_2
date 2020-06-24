@@ -64,7 +64,7 @@ class DrawerProductDetail extends Component {
         } else {
           return notification.open({
             message: "Add to cart failed",
-            description: "You have not logged in"
+            description: "Please login to add item to cart",
           })
         }
       })

@@ -73,10 +73,11 @@ class UserDetail extends Component {
   }
 
   handleClickChangePassword = () => {
+    console.log("hey hey hey")
     const { newPassword, verifyPassword, oldPassword } = this.state;
 
-    if(newPassword || newPassword === "") {
-      return({
+    if(!newPassword || newPassword === "") {
+      return notification.open({
         message: "New password can not be empty",
       })
     }
@@ -105,7 +106,7 @@ class UserDetail extends Component {
           } else if (res.data.status === "Fail/credentials don't match"){
             return notification.open({
               message: "Change password fail",
-              description: "Old password not right"
+              description: "Current password not right"
             })
           }
         })
@@ -276,20 +277,6 @@ class UserDetail extends Component {
             </div>
           </Panel>
         </Collapse>
-        {/* <div className="user-info">
-          <div className="info-title">
-            User information
-          </div>
-          {this.renderInfoDetail()}
-          <div className="info-button-line">
-            <Button
-              className="info-button"
-              onClick={this.handleUpdateUser}
-              >
-              Update
-            </Button>
-          </div>
-        </div> */}
       </div>
     );
   }

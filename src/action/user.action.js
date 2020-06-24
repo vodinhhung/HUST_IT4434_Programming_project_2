@@ -39,6 +39,13 @@ export const fetchUserInfo = () => dispatch => {
         });
       }
 
+      if(res.data.status === "Fail/unauthorized") {
+        notification.open({
+          message: "Can not load detail of user",
+          description: "Please login to view detail"
+        })
+      }
+
       return res.data;
     });
 };
@@ -75,6 +82,19 @@ export const updateUserInfo = params => dispatch => {
         });
         notification.open({
           message: "Update information successfully"
+        })
+      }
+
+      if (res.data.status === "Fail") {
+        notification.open({
+          message: "Fail to change information of user"
+        })
+      }
+
+      if (res.data.status === "Fail/unauthorized") {
+        notification.open({
+          message: "Fail to change information of user",
+          description: "Please login to change the detail of user",
         })
       }
 

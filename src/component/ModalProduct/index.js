@@ -56,10 +56,15 @@ class ModalProduct extends Component {
           fetchAllProduct().then(res => {
             callback()
           })
-        } else {
+        } else if (res.data.status === "Failed/duplicate name"){
           notification.open({
             message: "Create new product fail",
             description: "Duplicate name of existing product",
+          })
+        } else {
+          notification.open({
+            message: "Create new product fail",
+            description: "Please login as admin to create new product",
           })
         }
       })
@@ -86,9 +91,15 @@ class ModalProduct extends Component {
           notification.open({
             message: "Update new product successfully"
           })
+        } else if (res.data.status === "Fail/duplicate name"){
+          notification.open({
+            message: "Update new product fail",
+            description: "Name of product already exists",
+          })
         } else {
           notification.open({
             message: "Update new product fail",
+            description: "Please login as admin to change information of product",
           })
         }
       })

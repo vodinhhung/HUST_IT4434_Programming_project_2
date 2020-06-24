@@ -3,6 +3,7 @@ import {
   FETCH_CART_DETAIL
 } from '../constant';
 import qs from 'querystring';
+import { notification } from "antd";
 
 export const fetchCartInfo = () => dispatch => {
   let url = `https://hustshop.azurewebsites.net/rest/connect/getcart`;
@@ -21,6 +22,19 @@ export const fetchCartInfo = () => dispatch => {
         dispatch({
           type: FETCH_CART_DETAIL,
           payload: res.data,
+        })
+      }
+
+      if (res.data.status === "Fail/no item") {
+        notification.open({
+          message: "Cart have no item",
+        })
+      }
+
+      if (res.data.status === "Fail/unauthorized") {
+        notification.open({
+          message: "Fail to load cart detail",
+          description: "Please login to view cart",
         })
       }
       
