@@ -24,7 +24,7 @@ class HomeMenu extends Component {
 
       axios.get(url).then(res => {
         if(res.data.status === "Success") {
-          history.push("/")
+          history.push("/login")
         }
       })
     }
@@ -35,8 +35,8 @@ class HomeMenu extends Component {
     const { history } = this.props;
 
     axios.get(url).then(res => {
-      if(res.data === "Logged out") {
-        history.push("/")
+      if(res.data.status === "Success") {
+        history.push("/login")
       }
     })
   };
@@ -48,7 +48,12 @@ class HomeMenu extends Component {
 
   handleClickHome = () => {
     const { history } = this.props;
-    history.push('/home')
+    history.push('/')
+  }
+
+  handleClickLogin = () => {
+    const { history } = this.props;
+    history.push('/login')
   }
 
   render() {
@@ -60,7 +65,7 @@ class HomeMenu extends Component {
         onClick={this.handleOnClinkMenu}
         className="menu-content"
       >
-        <Item key="/home"> Home </Item>
+        <Item key="/"> Home </Item>
         <Item key="/userdetail"> Detail </Item>
         <Item key="/userorder"> Order </Item>
         <Item key="logout"> Logout</Item>
@@ -81,13 +86,15 @@ class HomeMenu extends Component {
       <div className="menu-background">
         <img src={Logo} className="menu-logo" onClick={() => this.handleClickHome()}/>
         <div className="menu-content"> HUSTSHOP </div>
-        <div
-          className="cart"
-          onClick={() => this.handleClickCart()}
-        >
-          <ShoppingCartOutlined style={{ fontSize: 20}}/>
-        </div>
-        {type == 1 &&
+        {type !== undefined &&
+          <div
+            className="cart"
+            onClick={() => this.handleClickCart()}
+          >
+            <ShoppingCartOutlined style={{ fontSize: 20}}/>
+          </div>
+        }
+        {type !== undefined && type == 1 &&
           <Dropdown
             overlay={menuAdmin}
             className="menu-dropdown"
@@ -100,17 +107,27 @@ class HomeMenu extends Component {
             </a>
           </Dropdown>
         }
-        <Dropdown
-          overlay={menuUser}
-          className="menu-dropdown"
-          placement="bottomRight"
-        >
-          <a 
-            className="ant-dropdown-link" 
-            onClick={e => e.preventDefault()}>
-            <UserOutlined style={{ fontSize: 20}}/>
-          </a>
-        </Dropdown>
+        {type !== undefined && 
+          <Dropdown
+            overlay={menuUser}
+            className="menu-dropdown"
+            placement="bottomRight"
+          >
+            <a 
+              className="ant-dropdown-link" 
+              onClick={e => e.preventDefault()}>
+              <UserOutlined style={{ fontSize: 20}}/>
+            </a>
+          </Dropdown>
+        }
+        {type === undefined && 
+          <div
+            className="cart"
+            onClick={() => this.handleClickLogin()}
+          >
+            Login
+          </div>
+        }
       </div>
     )
   }

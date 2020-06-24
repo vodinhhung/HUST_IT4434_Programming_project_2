@@ -39,13 +39,6 @@ export const fetchUserInfo = () => dispatch => {
         });
       }
 
-      if(res.data.status === "Fail/unauthorized") {
-        notification.open({
-          message: "Can not load detail of user",
-          description: "Please login to view detail"
-        })
-      }
-
       return res.data;
     });
 };

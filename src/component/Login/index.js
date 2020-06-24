@@ -58,7 +58,7 @@ class Login extends Component {
     await checkLoginStatus(params)
       .then(res => {
         if (res.status === 'Success'){
-          history.push('/home')
+          history.push('/')
         } else if (res.status === "Fail/account locked"){
           return notification.open({
             message: "Login blocked",

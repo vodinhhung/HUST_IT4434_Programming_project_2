@@ -34,7 +34,6 @@ class Home extends Component {
     }
 
     await fetchAllProduct(params)
-    await fetchCartInfo()
     await fetchUserInfo().then(res => {
       this.setState({
         userInfo: res,
