@@ -17,6 +17,7 @@ class Login extends Component {
       userName: "",
       password: "",
       email: "",
+      re_password: "",
       isCreating: false,
       isLogin: true,
     }
@@ -34,8 +35,10 @@ class Login extends Component {
       this.setState({ userName: value.currentTarget.value});
     } else if (type === 'password'){
       this.setState({ password: value.currentTarget.value});
-    } else {
+    } else if (type === "email"){
       this.setState({ email: value.currentTarget.value});
+    } else {
+      this.setState({ re_password: value.currentTarget.value});
     }
   }
 
@@ -74,13 +77,20 @@ class Login extends Component {
   }
 
   handleSignUp = async () => {
-    const { userName, password, email } = this.state;
+    const { userName, password, email, re_password } = this.state;
     const { createNewCustomer } = this.props;
 
     if (this.checkNull(userName) || this.checkNull(password) || this.checkNull(email)){
       return notification.open({
         message: "Signup fail",
-        description: "Username or password can't be empty",
+        description: "Username, password or pemail can't be empty",
+      })
+    }
+
+    if(password !== re_password) {
+      return notification.open({
+        message: "Signup fail",
+        description: "Re-enter wrong password",
       })
     }
 
@@ -159,6 +169,19 @@ class Login extends Component {
     )
   }
 
+  renderReEnterPassword() {
+    return (
+      <div className="input_login">
+        <Input.Password
+          className="box_input"
+          onChange={(value) => this.handleChange("re_password", value)}
+          // defaultValue={defaultValue}
+          placeholder="Re-enter password"
+        />
+      </div>
+    )
+  }
+
   render(){
     const { isCreating, isLogin } = this.state;
     const title = isCreating? "Sign up" : "Login"
@@ -173,6 +196,7 @@ class Login extends Component {
             {this.renderInputForm('username')}
             {isCreating && this.renderInputForm('email')}
             {this.renderInputForm('password')}
+            {isCreating && this.renderReEnterPassword()}
           </div>
           {isLogin && 
             <div 
