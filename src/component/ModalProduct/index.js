@@ -71,6 +71,7 @@ class ModalProduct extends Component {
   }
 
   handleEditProduct = () => {
+    const { callback, fetchAllProduct } = this.props;
     const { id, name, category, price, description, imageURL } = this.state;
     let url = `https://hustshop.azurewebsites.net/rest/connect/updateproduct`;
     
@@ -90,6 +91,9 @@ class ModalProduct extends Component {
         if(res.data.status === "Success"){
           notification.open({
             message: "Update new product successfully"
+          })
+          fetchAllProduct().then(res => {
+            callback()
           })
         } else if (res.data.status === "Fail/duplicate name"){
           notification.open({
